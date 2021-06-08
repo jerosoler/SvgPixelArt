@@ -67,6 +67,7 @@ export default {
       false
     ); */
     this.start();
+    this.loadDefaultData();
   },
   methods: {
     start() {
@@ -95,7 +96,26 @@ export default {
       } ${x * this.pixelWH},${(y - 1) * this.pixelWH} ${x * this.pixelWH},${
         y * this.pixelWH
       } ${(x - 1) * this.pixelWH},${y * this.pixelWH}`;
-      console.log(coordinates);
+      console.log(`${x} - ${y} - ${coordinates}`);
+      this.saveColor(x, y, this.color);
+    },
+    saveColor(x, y, color) {
+      this.$store.commit("addPixel", { x, y, color });
+    },
+    loadDefaultData() {
+      const colors = this.frames[0][0];
+
+      Object.keys(colors).forEach((color, index) => {
+        const pixels = this.frames[0][0][color].pixels;
+        pixels.forEach((ele) => {
+          const x = ele.x;
+          const y = ele.y;
+          const element = document.querySelector(
+            `[data-pos-x='${x}'][data-pos-y='${y}']`
+          );
+          element.style.background = `#${color}`;
+        });
+      });
     },
   },
 };

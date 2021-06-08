@@ -6,7 +6,15 @@ export const state = () => ({
   height: 400,
   pixelWH: 50,
   seconds: 1,
-  frames: [[{ color: "ff0000", pixels: ["M0,0 50,0 50,50 0,50"] }]]
+  frames: [
+    [
+      {
+        ff0000: { pixels: [{ x: 1, y: 1 }] },
+        ff9900: { pixels: [{ x: 2, y: 2 }] }
+      }
+    ]
+  ]
+  //frames: [[{ color: "ff0000", pixels: ["M0,0 50,0 50,50 0,50"] }]]
   /*  Example complet frames
         frames: [
             [{
@@ -27,7 +35,7 @@ export const mutations = {
     state.colorSelected = color;
   },
   addFrame(state) {
-    const frame = [];
+    const frame = [{}];
     state.frames.push(frame);
   },
   selectFrame(state, frame) {
@@ -35,5 +43,14 @@ export const mutations = {
   },
   clickState(state, clickValue) {
     state.clickValue = clickValue;
+  },
+  addPixel(state, { x, y, color }) {
+    if (state.frames[state.frameSelected - 1][0][color] === undefined) {
+      state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
+    }
+    // Search if exist object
+    // Search if exist in other color object
+
+    state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
   }
 };
