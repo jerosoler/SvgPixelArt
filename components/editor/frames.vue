@@ -1,0 +1,64 @@
+<template>
+  <div>
+    <div
+      class="frame"
+      v-for="(f, index) in frames"
+      :key="index"
+      :class="frame === index + 1 ? 'selected' : ''"
+      @click="selectFrame(index + 1)"
+    >
+      &nbsp;
+    </div>
+
+    <div class="frame add" @click="add()">+</div>
+  </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    frame() {
+      return this.$store.state.frameSelected;
+    },
+    frames() {
+      return this.$store.state.frames;
+    },
+  },
+  methods: {
+    add() {
+      this.$store.commit("addFrame");
+    },
+    selectFrame(f) {
+      this.$store.commit("selectFrame", f);
+    },
+  },
+};
+</script>    
+
+<style scoped>
+.frame {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--bg);
+  cursor: pointer;
+  margin: 5px;
+  line-height: 50px;
+}
+
+.selected {
+  border: 2px dashed var(--bg);
+}
+
+.add {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+
+  border: 2px solid transparent;
+  font-size: 30px;
+
+  text-align: center;
+}
+</style>
