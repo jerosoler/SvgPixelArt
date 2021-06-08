@@ -74,13 +74,28 @@ export default {
       for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].addEventListener("mouseenter", (e) => {
           if (this.clickElement) {
-            e.target.style.background = `#${this.color}`;
+            //e.target.style.background = `#${this.color}`;
+            this.paint(e.target);
           }
         });
         this.elements[i].addEventListener("mousedown", (e) => {
-          e.target.style.background = `#${this.color}`;
+          //e.target.style.background = `#${this.color}`;
+          this.paint(e.target);
         });
       }
+    },
+    paint(element) {
+      element.style.background = `#${this.color}`;
+      const x = element.getAttribute("data-pos-x");
+      const y = element.getAttribute("data-pos-y");
+      //M0,0 50,0 50,50 0,50;
+
+      const coordinates = `M${(x - 1) * this.pixelWH},${
+        (y - 1) * this.pixelWH
+      } ${x * this.pixelWH},${(y - 1) * this.pixelWH} ${x * this.pixelWH},${
+        y * this.pixelWH
+      } ${(x - 1) * this.pixelWH},${y * this.pixelWH}`;
+      console.log(coordinates);
     },
   },
 };
