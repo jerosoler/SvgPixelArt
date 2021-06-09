@@ -53,7 +53,7 @@ export default {
         pixel: parseInt(this.pixel),
         width: parseInt(this.widthX),
         height: parseInt(this.heightY),
-        seconds: parseInt(this.seconds),
+        seconds: parseFloat(this.sec),
       });
     },
   },

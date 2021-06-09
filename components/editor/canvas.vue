@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div>
-      Canvas - {{ width }} - {{ height }} - {{ pixelWH }} - -
-      {{ clickElement }}
-    </div>
     <div class="canvas">
       <div class="boxBlock">
         <div class="fileBlock" v-for="indexx in height" :key="`x-${indexx}`">
@@ -49,7 +45,6 @@ export default {
   watch: {
     width() {
       this.$nextTick(() => {
-        console.log("test");
         this.clearData();
         this.start();
         this.loadDefaultData();
@@ -57,7 +52,6 @@ export default {
     },
     height() {
       this.$nextTick(() => {
-        console.log("test");
         this.clearData();
         this.start();
         this.loadDefaultData();

@@ -64,6 +64,21 @@ export const mutations = {
     state.pixelWH = pixel;
     if (state.width > width || state.height > height) {
       // Remove elements in frames
+      const frames = state.frames;
+      frames.forEach((frame, index) => {
+        const colors = state.frames[index][0];
+        Object.keys(colors).forEach(colorlist => {
+          const pixels = state.frames[index][0][colorlist].pixels;
+          const filterPixels = pixels.filter(
+            p => p.x <= width && p.y <= height
+          );
+          if (filterPixels.length > 0) {
+            Vue.set(state.frames[index][0][colorlist], "pixels", filterPixels);
+          } else {
+            Vue.delete(state.frames[index][0], colorlist);
+          }
+        });
+      });
     }
     state.width = width;
     state.height = height;

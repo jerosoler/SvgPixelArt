@@ -40,12 +40,10 @@ export default {
 <style scoped>
 .frame {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+
   border: 2px solid var(--bg);
   cursor: pointer;
   margin: 5px;
-  line-height: 50px;
 }
 
 .selected {

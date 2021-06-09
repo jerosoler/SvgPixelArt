@@ -1,3 +1,3 @@
 <template>
-  <div>Preview</div>
+  <div><EditorSvgpreview /></div>
 </template>

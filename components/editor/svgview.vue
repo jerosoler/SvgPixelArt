@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div
+    :style="`width: ${(width * pixelWH) / 5}px; height:${
+      (height * pixelWH) / 5
+    }px;`"
+  >
     <svg
       width="100%"
       height="100%"
