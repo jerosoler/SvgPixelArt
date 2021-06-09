@@ -52,6 +52,13 @@ export default {
       return this.width / this.pixelWH;
     },
   },
+  watch: {
+    frameSelected() {
+      this.clearData();
+      this.start();
+      this.loadDefaultData();
+    },
+  },
   data() {
     return {
       elements: null,
@@ -70,43 +77,53 @@ export default {
     this.loadDefaultData();
   },
   methods: {
+    clearData() {
+      for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].removeEventListener(
+          "mouseenter",
+          this.paintMouseEnter
+        );
+        this.elements[i].removeEventListener("mousedown", this.paintMouseDown);
+        this.elements[i].style.background = "transparent";
+      }
+    },
     start() {
       this.elements = document.getElementsByClassName("pixelBlock");
       for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].addEventListener("mouseenter", (e) => {
-          if (this.clickElement) {
-            //e.target.style.background = `#${this.color}`;
-            this.paint(e.target);
-          }
-        });
-        this.elements[i].addEventListener("mousedown", (e) => {
-          //e.target.style.background = `#${this.color}`;
-          this.paint(e.target);
-        });
+        this.elements[i].addEventListener("mouseenter", this.paintMouseEnter);
+        this.elements[i].addEventListener("mousedown", this.paintMouseDown);
       }
+    },
+    paintMouseEnter: function (e) {
+      if (this.clickElement) {
+        this.paint(e.target);
+      }
+    },
+    paintMouseDown: function (e) {
+      this.paint(e.target);
     },
     paint(element) {
       element.style.background = `#${this.color}`;
-      const x = element.getAttribute("data-pos-x");
-      const y = element.getAttribute("data-pos-y");
+      const x = parseInt(element.getAttribute("data-pos-x"));
+      const y = parseInt(element.getAttribute("data-pos-y"));
       //M0,0 50,0 50,50 0,50;
-
+      /*
       const coordinates = `M${(x - 1) * this.pixelWH},${
         (y - 1) * this.pixelWH
       } ${x * this.pixelWH},${(y - 1) * this.pixelWH} ${x * this.pixelWH},${
         y * this.pixelWH
       } ${(x - 1) * this.pixelWH},${y * this.pixelWH}`;
-      console.log(`${x} - ${y} - ${coordinates}`);
+      //console.log(`${x} - ${y} - ${coordinates}`); */
       this.saveColor(x, y, this.color);
     },
     saveColor(x, y, color) {
       this.$store.commit("addPixel", { x, y, color });
     },
     loadDefaultData() {
-      const colors = this.frames[0][0];
+      const colors = this.frames[this.frameSelected - 1][0];
 
       Object.keys(colors).forEach((color, index) => {
-        const pixels = this.frames[0][0][color].pixels;
+        const pixels = this.frames[this.frameSelected - 1][0][color].pixels;
         pixels.forEach((ele) => {
           const x = ele.x;
           const y = ele.y;

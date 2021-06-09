@@ -6,9 +6,7 @@
       :key="index"
       :class="frame === index + 1 ? 'selected' : ''"
       @click="selectFrame(index + 1)"
-    >
-      &nbsp;
-    </div>
+    ></div>
 
     <div class="frame add" @click="add()">+</div>
   </div>

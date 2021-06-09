@@ -12,6 +12,12 @@ export const state = () => ({
         ff0000: { pixels: [{ x: 1, y: 1 }] },
         ff9900: { pixels: [{ x: 2, y: 2 }] }
       }
+    ],
+    [
+      {
+        ff0000: { pixels: [{ x: 3, y: 3 }] },
+        ff9900: { pixels: [{ x: 4, y: 4 }] }
+      }
     ]
   ]
   //frames: [[{ color: "ff0000", pixels: ["M0,0 50,0 50,50 0,50"] }]]
@@ -45,12 +51,34 @@ export const mutations = {
     state.clickValue = clickValue;
   },
   addPixel(state, { x, y, color }) {
+    // Search if exist object
+    const colors = state.frames[state.frameSelected - 1][0];
+
+    Object.keys(colors).forEach(colorlist => {
+      const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
+      const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
+
+      if (indexSlice > -1) {
+        if (pixels.length > 1) {
+          // Remove Object
+          state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
+            indexSlice,
+            1
+          );
+        } else {
+          // Remove Color
+          const colorsRemove = state.frames[state.frameSelected - 1][0];
+          delete colorsRemove[colorlist];
+          state.frames[state.frameSelected - 1][0] = colorsRemove;
+        }
+      }
+    });
+
+    // Create color
     if (state.frames[state.frameSelected - 1][0][color] === undefined) {
       state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
     }
-    // Search if exist object
-    // Search if exist in other color object
-
+    // Add Color
     state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
   }
 };
