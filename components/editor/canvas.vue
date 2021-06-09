@@ -1,15 +1,15 @@
 <template>
   <div>
     <div>
-      Canvas - {{ width }} - {{ height }} - {{ pixelWH }} - {{ x }} - {{ y }} -
+      Canvas - {{ width }} - {{ height }} - {{ pixelWH }} - -
       {{ clickElement }}
     </div>
     <div class="canvas">
       <div class="boxBlock">
-        <div class="fileBlock" v-for="indexx in x" :key="`x-${indexx}`">
+        <div class="fileBlock" v-for="indexx in height" :key="`x-${indexx}`">
           <div
             class="pixelBlock"
-            v-for="indexy in y"
+            v-for="indexy in width"
             :key="`y-${indexy}`"
             :style="`width:${pixelWH}px; height:${pixelWH}px;`"
             :data-pos-x="indexy"
@@ -45,14 +45,24 @@ export default {
     frameSelected() {
       return this.$store.state.frameSelected;
     },
-    x() {
-      return this.height / this.pixelWH;
-    },
-    y() {
-      return this.width / this.pixelWH;
-    },
   },
   watch: {
+    width() {
+      this.$nextTick(() => {
+        console.log("test");
+        this.clearData();
+        this.start();
+        this.loadDefaultData();
+      });
+    },
+    height() {
+      this.$nextTick(() => {
+        console.log("test");
+        this.clearData();
+        this.start();
+        this.loadDefaultData();
+      });
+    },
     frameSelected() {
       this.clearData();
       this.start();
@@ -103,13 +113,18 @@ export default {
       this.paint(e.target);
     },
     paint(element) {
-      element.style.background = `#${this.color}`;
+      if (this.color === "transparent") {
+        element.style.background = null;
+      } else {
+        element.style.background = `#${this.color}`;
+      }
       const x = parseInt(element.getAttribute("data-pos-x"));
       const y = parseInt(element.getAttribute("data-pos-y"));
       const color = this.color;
       const frame = this.frameSelected - 1;
 
       //M0,0 50,0 50,50 0,50;
+
       /*
       const coordinates = `M${(x - 1) * this.pixelWH},${
         (y - 1) * this.pixelWH
@@ -131,10 +146,12 @@ export default {
         pixels.forEach((ele) => {
           const x = ele.x;
           const y = ele.y;
+          // if (this.x <= x && this.y <= y) {
           const element = document.querySelector(
             `[data-pos-x='${x}'][data-pos-y='${y}']`
           );
           element.style.background = `#${color}`;
+          //}
         });
       });
     },

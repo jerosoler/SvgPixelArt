@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div
+  <ul>
+    <li
       class="frame"
       v-for="(f, index) in frames"
       :key="index"
@@ -8,10 +8,10 @@
       @click="selectFrame(index + 1)"
     >
       <EditorSvgview :doc="index" />
-    </div>
+    </li>
 
-    <div class="frame add" @click="add()">+</div>
-  </div>
+    <li class="frame add" @click="add()">+</li>
+  </ul>
 </template>
 
 <script>

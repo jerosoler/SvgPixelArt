@@ -1,9 +1,9 @@
 <template>
   <div>
     <svg
-      :width="width / pixelWH"
-      :height="height / pixelWH"
-      :viewBox="`0 0 ${width} ${height}`"
+      width="100%"
+      height="100%"
+      :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
     >
       <path
         v-for="(c, index) in frame"
@@ -56,6 +56,6 @@ export default {
 
 <style scoped>
 svg {
-  transform: scale(5);
+  /*transform: scale(5);*/
 }
 </style>

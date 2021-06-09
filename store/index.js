@@ -4,8 +4,8 @@ export const state = () => ({
   clickValue: false,
   colorSelected: "ff0000",
   frameSelected: 1,
-  width: 500,
-  height: 400,
+  width: 10,
+  height: 8,
   pixelWH: 50,
   seconds: 1,
   frames: [
@@ -60,6 +60,15 @@ export const mutations = {
   clickState(state, clickValue) {
     state.clickValue = clickValue;
   },
+  updateLayout(state, { pixel, width, height, seconds }) {
+    state.pixelWH = pixel;
+    if (state.width > width || state.height > height) {
+      // Remove elements in frames
+    }
+    state.width = width;
+    state.height = height;
+    state.seconds = seconds;
+  },
   addPixel(state, { x, y, color }) {
     // Search if exist object
     const colors = state.frames[state.frameSelected - 1][0];
@@ -85,14 +94,18 @@ export const mutations = {
       }
     });
 
-    // Create color
-    if (state.frames[state.frameSelected - 1][0][color] === undefined) {
-      //state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
-      Vue.set(state.frames[state.frameSelected - 1][0], color, { pixels: [] });
+    if (color !== "transparent") {
+      // Create color
+      if (state.frames[state.frameSelected - 1][0][color] === undefined) {
+        //state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
+        Vue.set(state.frames[state.frameSelected - 1][0], color, {
+          pixels: []
+        });
+      }
+      // Add Color
+      const coodenats = { x, y };
+      state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
+      //Vue.set(state.frames[state.frameSelected - 1][0][color], "pixels", coodenats);
     }
-    // Add Color
-    const coodenats = { x, y };
-    state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
-    //Vue.set(state.frames[state.frameSelected - 1][0][color], "pixels", coodenats);
   }
 };
