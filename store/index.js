@@ -72,7 +72,6 @@ export const mutations = {
         if (indexSlice > -1) {
           if (pixels.length > 1) {
             // Remove Object
-            const RemoveObject = pixels.splice(indexSlice, 1);
             state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
               indexSlice,
               1
