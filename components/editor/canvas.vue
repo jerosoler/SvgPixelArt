@@ -106,6 +106,9 @@ export default {
       element.style.background = `#${this.color}`;
       const x = parseInt(element.getAttribute("data-pos-x"));
       const y = parseInt(element.getAttribute("data-pos-y"));
+      const color = this.color;
+      const frame = this.frameSelected - 1;
+
       //M0,0 50,0 50,50 0,50;
       /*
       const coordinates = `M${(x - 1) * this.pixelWH},${
@@ -114,10 +117,11 @@ export default {
         y * this.pixelWH
       } ${(x - 1) * this.pixelWH},${y * this.pixelWH}`;
       //console.log(`${x} - ${y} - ${coordinates}`); */
-      this.saveColor(x, y, this.color);
+
+      this.saveColor(x, y, color, frame);
     },
-    saveColor(x, y, color) {
-      this.$store.commit("addPixel", { x, y, color });
+    saveColor(x, y, color, frame) {
+      this.$store.commit("addPixel", { x, y, color, frame });
     },
     loadDefaultData() {
       const colors = this.frames[this.frameSelected - 1][0];

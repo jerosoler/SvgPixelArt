@@ -6,14 +6,18 @@
       :key="index"
       :class="frame === index + 1 ? 'selected' : ''"
       @click="selectFrame(index + 1)"
-    ></div>
+    >
+      <EditorSvgview :doc="index" />
+    </div>
 
     <div class="frame add" @click="add()">+</div>
   </div>
 </template>
 
 <script>
+import svgview from "./svgview.vue";
 export default {
+  components: { svgview },
   computed: {
     frame() {
       return this.$store.state.frameSelected;

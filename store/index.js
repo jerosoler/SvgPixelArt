@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 export const state = () => ({
   clickValue: false,
   colorSelected: "ff0000",
@@ -36,6 +38,14 @@ export const state = () => ({
   */
 });
 
+/*export const getters = {
+  getFrame(state) {
+    return id => {
+      return state.frames[id][0];
+    };
+  }
+};*/
+
 export const mutations = {
   selectColor(state, color) {
     state.colorSelected = color;
@@ -58,27 +68,32 @@ export const mutations = {
       const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
       const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
 
-      if (indexSlice > -1) {
-        if (pixels.length > 1) {
-          // Remove Object
-          state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
-            indexSlice,
-            1
-          );
-        } else {
-          // Remove Color
-          const colorsRemove = state.frames[state.frameSelected - 1][0];
-          delete colorsRemove[colorlist];
-          state.frames[state.frameSelected - 1][0] = colorsRemove;
+      if (colorlist !== color) {
+        if (indexSlice > -1) {
+          if (pixels.length > 1) {
+            // Remove Object
+            const RemoveObject = pixels.splice(indexSlice, 1);
+            state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
+              indexSlice,
+              1
+            );
+          } else {
+            // Remove Color
+            //delete state.frames[state.frameSelected - 1][0][colorlist];
+            Vue.delete(state.frames[state.frameSelected - 1][0], colorlist);
+          }
         }
       }
     });
 
     // Create color
     if (state.frames[state.frameSelected - 1][0][color] === undefined) {
-      state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
+      //state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
+      Vue.set(state.frames[state.frameSelected - 1][0], color, { pixels: [] });
     }
     // Add Color
+    const coodenats = { x, y };
     state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
+    //Vue.set(state.frames[state.frameSelected - 1][0][color], "pixels", coodenats);
   }
 };
