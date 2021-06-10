@@ -89,7 +89,6 @@ export default {
 .box {
   display: flex;
   width: 100%;
-
   border: 2px solid var(--color);
 }
 </style>
