@@ -54,6 +54,33 @@ export const mutations = {
     const frame = [{}];
     state.frames.push(frame);
   },
+  delFrame(state, frame) {
+    let isZero = false;
+    if (frame + 1 == state.frameSelected) {
+      // EQUAL FRAME
+      //console.log("es el mismo frame");
+      if (frame === 0) {
+        // FRAME 0
+        //console.log("Es el frame 0");
+        state.frameSelected = 1;
+        isZero = true;
+      } else {
+        // OTHER FRAME
+        //console.log("NO ES el frame 0");
+        state.frameSelected = state.frameSelected - 1;
+      }
+    } else {
+      //console.log("NO ES EL MISMO FRAME");
+      if (state.frames.length === state.frameSelected) {
+        state.frameSelected = state.frameSelected - 1;
+      }
+    }
+    //Vue.delete(state.frames, frame);
+    state.frames.splice(frame, 1);
+    if (isZero === true) {
+      state.frameSelected = 1;
+    }
+  },
   selectFrame(state, frame) {
     state.frameSelected = frame;
   },

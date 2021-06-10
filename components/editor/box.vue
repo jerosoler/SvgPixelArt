@@ -18,8 +18,6 @@ export default {
   width: 100%;
   border-radius: 4px;
   background: var(--bg);
-  margin-right: 10px;
-  margin-left: 10px;
   margin-bottom: 20px;
 }
 h4 {

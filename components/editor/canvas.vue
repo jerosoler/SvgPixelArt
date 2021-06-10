@@ -62,6 +62,11 @@ export default {
       this.start();
       this.loadDefaultData();
     },
+    frames() {
+      this.clearData();
+      this.start();
+      this.loadDefaultData();
+    },
   },
   data() {
     return {
@@ -155,6 +160,13 @@ export default {
 <style scoped>
 .canvas {
   display: flex;
+  max-width: 100%;
+  min-height: 644px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 .boxBlock {
   border: 2px solid var(--bg);
@@ -165,9 +177,14 @@ export default {
   display: flex;
 }
 .pixelBlock {
+  user-select: none;
   display: block;
-  border: 1px solid var(--bg);
-  background: repeating-conic-gradient(#808080 0% 25%, white 0% 50%) 50% / 20px
-    20px;
+  border: 0.3px solid var(--bg);
+  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
+    20px 20px;
+}
+
+.pixelBlock:hover {
+  border: 1px solid;
 }
 </style>

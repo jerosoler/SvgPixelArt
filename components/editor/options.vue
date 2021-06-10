@@ -1,14 +1,10 @@
 <template>
   <div>
-    Options<br />
-    Pixel size:<br />
-    <input type="range" v-model="pixel" min="10" max="100" /> {{ pixel }}
-    <br />
     Filex x:<br />
-    <input type="range" v-model="widthX" min="2" max="50" /> {{ widthX }}
+    <input type="range" v-model="widthX" min="2" max="60" /> {{ widthX }}
     <br />
     Files y:<br />
-    <input type="range" v-model="heightY" min="2" max="50" /> {{ heightY }}
+    <input type="range" v-model="heightY" min="2" max="60" /> {{ heightY }}
     <br />
     Seconds:<br />
     <input type="range" v-model="sec" min="0.1" max="50" step="0.10" />

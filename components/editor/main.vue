@@ -5,20 +5,23 @@
         <EditorHeader />
       </div>
       <div class="bodyEditor">
-        <div class="column-left">
+        <div class="column-pre-left">
           <EditorBox title="Frames">
             <EditorFrames />
           </EditorBox>
+        </div>
+        <div class="column-left">
           <EditorBox title="Colors">
             <EditorColors />
+          </EditorBox>
+          <EditorBox title="Layers">
+            <EditorLayers />
           </EditorBox>
         </div>
         <div class="column-center">
           <EditorBox title="Canvas">
             <EditorCanvas />
           </EditorBox>
-
-          <EditorBox title="Layers"> </EditorBox>
         </div>
         <div class="column-right">
           <EditorBox title="Preview">
@@ -51,7 +54,11 @@
 
   margin-left: 20px;
   margin-right: 20px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+
   background: var(--bg-editor);
 }
 .headerEditor {
@@ -59,21 +66,20 @@
   height: 24px;
 }
 .bodyEditor {
-  display: flex;
-  justify-content: space-between;
-}
+  /*display: flex;
+  justify-content: space-between;*/
 
-.column-left {
-  max-width: 400px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 120px 180px 1fr 240px;
+
+  gap: 0px 20px;
+  grid-auto-flow: row;
 }
-.column-center {
-  width: 100%;
+.column-pre-left {
+  display: block;
+  max-height: 500px;
 }
 .column-right {
-  min-width: 250px;
-  width: 250px;
-  max-width: 250px;
   display: flex;
   flex-direction: column;
 }

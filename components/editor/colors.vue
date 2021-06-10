@@ -57,11 +57,11 @@ export default {
 }
 
 .color.transparent {
-  background: repeating-conic-gradient(#808080 0% 25%, white 0% 50%) 50% / 20px
-    20px;
+  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
+    20px 20px;
 }
 
 .selected {
-  border: 3px dashed var(--bg);
+  border: 3px dashed var(--color);
 }
 </style>

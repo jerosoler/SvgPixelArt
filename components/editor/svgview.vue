@@ -4,21 +4,27 @@
       height * pixelWH * 2
     }px; width 100%; min-width: 50px; height: auto; display:flex;`"
   > -->
-  <div
-    :style="`width:100%; height: auto; min-height: 50px; width: auto; display:flex;`"
-  >
-    <svg
-      width="100%"
-      height="100%"
-      :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
-    >
-      <path
-        v-for="(c, index) in frame"
-        :key="index"
-        :style="`fill:#${index}`"
-        :d="transformToSvg(c.pixels)"
-      ></path>
-    </svg>
+  <div class="box">
+    <div class="frame">
+      <div class="number">{{ doc + 1 }}</div>
+      <div class="duplicate" @click="duplicate">DD</div>
+      <div class="del" @click="del" v-if="this.$store.state.frames.length > 1">
+        Del
+      </div>
+      <svg
+        width="100%"
+        height="100%"
+        :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
+        @click="selectFrame(doc + 1)"
+      >
+        <path
+          v-for="(c, index) in frame"
+          :key="index"
+          :style="`fill:#${index}`"
+          :d="transformToSvg(c.pixels)"
+        ></path>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -57,12 +63,80 @@ export default {
       });
       return svg_moveto;
     },
+    selectFrame(f) {
+      this.$store.commit("selectFrame", f);
+    },
+    duplicate() {},
+    del() {
+      this.$store.commit("delFrame", this.doc);
+    },
   },
 };
 </script>
 
 <style scoped>
-svg {
-  /*transform: scale(5);*/
+.box {
+  display: block;
+  position: relative;
+}
+.frame {
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  width: auto;
+  display: flex;
+}
+.number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color);
+  color: var(--bg);
+  width: 24px;
+  height: 24px;
+  border-radius: 0px 0px 4px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.duplicate {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--color);
+  color: var(--bg);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.del {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--color);
+  color: var(--bg);
+  width: 24px;
+  height: 24px;
+  border-radius: 0px 0px 0px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number,
+.del,
+.duplicate {
+  opacity: 0;
+}
+
+.frame:hover .number,
+.frame:hover .del,
+.frame:hover .duplicate {
+  opacity: 1;
 }
 </style>

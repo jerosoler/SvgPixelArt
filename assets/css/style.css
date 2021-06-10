@@ -13,3 +13,22 @@ body {
   background: var(--bg);
   color: var(--color);
 }
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #aaaaaa;
+}
+
+@font-face {
+  font-family: "PS2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("~assets/fonts/PressStart2P-Regular.ttf") format("truetype");
+}

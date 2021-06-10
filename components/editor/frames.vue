@@ -5,7 +5,6 @@
       v-for="(f, index) in frames"
       :key="index"
       :class="frame === index + 1 ? 'selected' : ''"
-      @click="selectFrame(index + 1)"
     >
       <EditorSvgview :doc="index" />
     </li>
@@ -30,9 +29,6 @@ export default {
     add() {
       this.$store.commit("addFrame");
     },
-    selectFrame(f) {
-      this.$store.commit("selectFrame", f);
-    },
   },
 };
 </script>    
@@ -41,13 +37,18 @@ export default {
 ul {
   margin: 0px;
   padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  max-height: 644px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .frame {
-  display: inline-block;
-
   border: 2px solid var(--color);
   cursor: pointer;
-  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .selected {
@@ -55,13 +56,13 @@ ul {
 }
 
 .add {
-  display: inline-block;
+  display: block;
   width: 50px;
   height: 50px;
   cursor: pointer;
-
-  border: 2px solid transparent;
-  font-size: 30px;
+  border: none;
+  line-height: 50px;
+  font-size: 24px;
 
   text-align: center;
 }
