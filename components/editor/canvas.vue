@@ -7,7 +7,7 @@
             class="pixelBlock"
             v-for="indexy in width"
             :key="`y-${indexy}`"
-            :style="`width:${pixelWH}px; height:${pixelWH}px;`"
+            :style="`width:${pixelWH * 20}px; height:${pixelWH * 20}px;`"
             :data-pos-x="indexy"
             :data-pos-y="indexx"
           ></div>
@@ -88,7 +88,7 @@ export default {
           this.paintMouseEnter
         );
         this.elements[i].removeEventListener("mousedown", this.paintMouseDown);
-        this.elements[i].style.background = "transparent";
+        this.elements[i].style.background = null;
       }
     },
     start() {
@@ -167,5 +167,7 @@ export default {
 .pixelBlock {
   display: block;
   border: 1px solid var(--bg);
+  background: repeating-conic-gradient(#808080 0% 25%, white 0% 50%) 50% / 20px
+    20px;
 }
 </style>

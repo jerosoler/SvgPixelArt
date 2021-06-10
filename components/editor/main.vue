@@ -1,44 +1,80 @@
 <template>
   <div class="editor">
     <div class="container">
-      <div class="column-left">
-        <EditorColors />
+      <div class="headerEditor">
+        <EditorHeader />
       </div>
-      <div class="column-center">
-        <EditorCanvas />
-        <EditorFrames />
+      <div class="bodyEditor">
+        <div class="column-left">
+          <EditorBox title="Frames">
+            <EditorFrames />
+          </EditorBox>
+          <EditorBox title="Colors">
+            <EditorColors />
+          </EditorBox>
+        </div>
+        <div class="column-center">
+          <EditorBox title="Canvas">
+            <EditorCanvas />
+          </EditorBox>
+
+          <EditorBox title="Layers"> </EditorBox>
+        </div>
+        <div class="column-right">
+          <EditorBox title="Preview">
+            <EditorPreview />
+          </EditorBox>
+          <EditorBox title="Options">
+            <EditorOptions />
+          </EditorBox>
+        </div>
       </div>
-      <div class="column-right">
-        <EditorPreview />
-        <EditorOptions />
-      </div>
+      <div class="footerEditor"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .editor {
-  border-radius: 4px;
-  border: 1px solid red;
-  padding: 10px;
+  display: block;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 .container {
+  display: block;
+  position: relative;
+  border-radius: 4px;
+
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  background: var(--bg-editor);
+}
+.headerEditor {
+  text-align: right;
+  height: 24px;
+}
+.bodyEditor {
   display: flex;
   justify-content: space-between;
 }
+
 .column-left {
-  width: 150px;
-  background: red;
-  padding: 0px 10px;
+  max-width: 400px;
+  display: flex;
 }
 .column-center {
   width: 100%;
-  background: green;
-  padding: 0px 50px;
 }
 .column-right {
-  width: 400px;
-  background: blue;
-  padding: 0px 10px;
+  min-width: 250px;
+  width: 250px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
 }
 </style>

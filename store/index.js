@@ -4,9 +4,9 @@ export const state = () => ({
   clickValue: false,
   colorSelected: "ff0000",
   frameSelected: 1,
-  width: 10,
-  height: 8,
-  pixelWH: 50,
+  width: 32,
+  height: 32,
+  pixelWH: 1,
   seconds: 1,
   frames: [
     [
@@ -92,21 +92,21 @@ export const mutations = {
       const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
       const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
 
-      if (colorlist !== color) {
-        if (indexSlice > -1) {
-          if (pixels.length > 1) {
-            // Remove Object
-            state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
-              indexSlice,
-              1
-            );
-          } else {
-            // Remove Color
-            //delete state.frames[state.frameSelected - 1][0][colorlist];
-            Vue.delete(state.frames[state.frameSelected - 1][0], colorlist);
-          }
+      //if (colorlist !== color) {
+      if (indexSlice > -1) {
+        if (pixels.length > 1) {
+          // Remove Object
+          state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
+            indexSlice,
+            1
+          );
+        } else {
+          // Remove Color
+          //delete state.frames[state.frameSelected - 1][0][colorlist];
+          Vue.delete(state.frames[state.frameSelected - 1][0], colorlist);
         }
       }
+      // }
     });
 
     if (color !== "transparent") {

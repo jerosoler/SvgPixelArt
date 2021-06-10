@@ -45,14 +45,15 @@ export default {
 <style scoped>
 .colors {
   display: block;
+  font-size: 0;
 }
 .color {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--bg);
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  margin: 5px;
+  /*border: 2px solid var(--bg);
+  margin: 5px;*/
 }
 
 .color.transparent {
@@ -61,6 +62,6 @@ export default {
 }
 
 .selected {
-  border: 2px dashed var(--bg);
+  border: 3px dashed var(--bg);
 }
 </style>

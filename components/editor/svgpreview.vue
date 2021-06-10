@@ -1,10 +1,5 @@
 <template>
-  <div
-    :style="`width: ${(width * pixelWH) / 5}px; height:${
-      (height * pixelWH) / 5
-    }px;`"
-    class="box"
-  >
+  <div class="box">
     <svg
       width="100%"
       height="100%"
@@ -75,12 +70,12 @@ export default {
               x * pixelWH
             },${(y - 1) * pixelWH} ${x * pixelWH},${y * pixelWH} ${
               (x - 1) * pixelWH
-            },${y * pixelWH} `;
+            },${y * pixelWH}`;
             svg_moveto += coordinates;
           });
           svg_moveto += `;`;
         } else {
-          svg_moveto += `M0,0 ;`;
+          svg_moveto += `M;`;
         }
       });
 
@@ -92,6 +87,8 @@ export default {
 
 <style scoped>
 .box {
+  display: flex;
+  width: 100%;
   border: 2px solid var(--bg);
 }
 </style>

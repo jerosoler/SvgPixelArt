@@ -38,16 +38,20 @@ export default {
 </script>    
 
 <style scoped>
+ul {
+  margin: 0px;
+  padding: 0px;
+}
 .frame {
   display: inline-block;
 
-  border: 2px solid var(--bg);
+  border: 2px solid var(--color);
   cursor: pointer;
   margin: 5px;
 }
 
 .selected {
-  border: 2px dashed var(--bg);
+  border: 2px dashed var(--color);
 }
 
 .add {

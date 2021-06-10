@@ -1,6 +1,7 @@
 :root {
   --bg: #ffffff;
   --color: #1c1c1c;
+  --bg-editor: #2d2d2d;
 }
 
 .dark-mode {

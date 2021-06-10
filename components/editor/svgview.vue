@@ -1,8 +1,11 @@
 <template>
+  <!--<div
+    :style="`width: ${width * pixelWH * 2}px; height:${
+      height * pixelWH * 2
+    }px; width 100%; min-width: 50px; height: auto; display:flex;`"
+  > -->
   <div
-    :style="`width: ${(width * pixelWH) / 5}px; height:${
-      (height * pixelWH) / 5
-    }px;`"
+    :style="`width:100%; height: auto; min-height: 50px; width: auto; display:flex;`"
   >
     <svg
       width="100%"
