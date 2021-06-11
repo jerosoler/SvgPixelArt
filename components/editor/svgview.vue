@@ -66,7 +66,9 @@ export default {
     selectFrame(f) {
       this.$store.commit("selectFrame", f);
     },
-    duplicate() {},
+    duplicate() {
+      this.$store.commit("duplicateFrame", this.doc);
+    },
     del() {
       this.$store.commit("delFrame", this.doc);
     },

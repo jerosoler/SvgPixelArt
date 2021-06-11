@@ -81,6 +81,11 @@ export const mutations = {
       state.frameSelected = 1;
     }
   },
+  duplicateFrame(state, frame) {
+    const frameCopy = JSON.parse(JSON.stringify(state.frames[frame]));
+    state.frames.splice(frame, 0, frameCopy);
+    state.frameSelected = frame + 2;
+  },
   selectFrame(state, frame) {
     state.frameSelected = frame;
   },
