@@ -14,6 +14,9 @@
           <EditorBox title="Colors">
             <EditorColors />
           </EditorBox>
+          <EditorBox title="Frame Colors">
+            <EditorColorsFrame />
+          </EditorBox>
           <EditorBox title="Layers">
             <EditorLayers />
           </EditorBox>

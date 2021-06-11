@@ -170,7 +170,7 @@ export default {
   align-content: center;
 }
 .boxBlock {
-  border: 2px solid var(--bg);
+  /* border: 2px solid var(--bg);*/
   margin: auto;
 }
 

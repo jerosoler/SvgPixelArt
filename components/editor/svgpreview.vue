@@ -1,26 +1,31 @@
 <template>
-  <div class="box">
-    <svg
-      width="100%"
-      height="100%"
-      :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
-    >
-      <path d=" " v-for="c in colors" :key="c" :style="`fill:#${c};`">
-        <animate
-          attributeName="d"
-          :dur="`${seconds}s`"
-          repeatCount="indefinite"
-          calcMode="discrete"
-          :values="transformToSvgColor(c)"
-        />
-      </path>
-      <!--<path
+  <div>
+    <div class="box">
+      <svg
+        ref="svgpreview"
+        width="100%"
+        height="100%"
+        :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
+      >
+        <path d=" " v-for="c in colors" :key="c" :style="`fill:#${c};`">
+          <animate
+            attributeName="d"
+            :dur="`${seconds}s`"
+            repeatCount="indefinite"
+            calcMode="discrete"
+            :values="transformToSvgColor(c)"
+          />
+        </path>
+        <!--<path
         v-for="(c, index) in frame"
         :key="index"
         :style="`fill:#${index}`"
         :d="transformToSvg(c.pixels)"
       ></path>-->
-    </svg>
+      </svg>
+    </div>
+    <button @click="playAnimation" v-if="!play">Play</button>
+    <button @click="pauseAnimation" v-else>Pause</button>
   </div>
 </template>
 
@@ -53,8 +58,20 @@ export default {
       return colors;
     },
   },
-
+  data() {
+    return {
+      play: true,
+    };
+  },
   methods: {
+    playAnimation() {
+      this.play = true;
+      this.$refs.svgpreview.unpauseAnimations();
+    },
+    pauseAnimation() {
+      this.play = false;
+      this.$refs.svgpreview.pauseAnimations();
+    },
     transformToSvgColor(color) {
       let svg_moveto = "";
 
