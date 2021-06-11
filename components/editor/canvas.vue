@@ -162,6 +162,7 @@ export default {
   display: flex;
   max-width: 100%;
   min-height: 644px;
+  max-height: 644px;
   overflow: auto;
   display: flex;
   justify-content: center;

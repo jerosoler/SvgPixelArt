@@ -90,5 +90,7 @@ export default {
   display: flex;
   width: 100%;
   border: 2px solid var(--color);
+  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
+    20px 20px;
 }
 </style>

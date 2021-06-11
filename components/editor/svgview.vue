@@ -85,6 +85,8 @@ export default {
   min-height: 50px;
   width: auto;
   display: flex;
+  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
+    20px 20px;
 }
 .number {
   position: absolute;

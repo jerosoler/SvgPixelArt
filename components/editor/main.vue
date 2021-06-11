@@ -70,14 +70,14 @@
   justify-content: space-between;*/
 
   display: grid;
-  grid-template-columns: 120px 180px 1fr 240px;
+  grid-template-columns: 120px 180px minmax(300px, 1fr) 240px;
 
   gap: 0px 20px;
   grid-auto-flow: row;
 }
 .column-pre-left {
   display: block;
-  max-height: 500px;
+  /*max-height: 500px;*/
 }
 .column-right {
   display: flex;
