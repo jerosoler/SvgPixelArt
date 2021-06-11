@@ -96,7 +96,7 @@ export default {
   left: 0;
   background: var(--color);
   color: var(--bg);
-  width: 24px;
+  min-width: 24px;
   height: 24px;
   border-radius: 0px 0px 4px 0px;
   display: flex;
