@@ -1,7 +1,20 @@
 <template>
   <div>
     <div class="canvas">
-      <canvas ref="canvas" :width="width" :height="height" />
+      <div class="boxBlock">
+        <div class="fileBlock" v-for="indexx in height" :key="`x-${indexx}`">
+          <div
+            class="pixelBlock"
+            v-for="indexy in width"
+            :key="`y-${indexy}`"
+            :style="`width:${pixelWH * 20}px; height:${pixelWH * 20}px;`"
+            :data-pos-x="indexy"
+            :data-pos-y="indexx"
+            @mouseenter="paintMouseEnter"
+            @mousedown="paintMouseDown"
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,13 +45,6 @@ export default {
     },
   },
   watch: {
-    clickElement(value) {
-      if (value) {
-        this.paintMouseDown(Event);
-      } else {
-        this.paintMouseUp();
-      }
-    },
     width() {
       this.$nextTick(() => {
         this.clearData();
@@ -67,16 +73,9 @@ export default {
   data() {
     return {
       elements: null,
-      ctx: null,
     };
   },
   mounted() {
-    this.$refs.canvas.addEventListener(
-      "mousemove",
-      this.paintMouseEnter,
-      false
-    );
-    this.ctx = this.$refs.canvas.getContext("2d");
     /*
     this.$refs.svg.addEventListener(
       "mouseenter",
@@ -89,40 +88,41 @@ export default {
     this.loadDefaultData();
   },
   methods: {
-    clearData() {},
-    start() {},
+    clearData() {
+      for (var i = 0; i < this.elements.length; i++) {
+        /*this.elements[i].removeEventListener(
+          "mouseenter",
+          this.paintMouseEnter
+        );
+        this.elements[i].removeEventListener("mousedown", this.paintMouseDown);*/
+        this.elements[i].style.background = null;
+      }
+    },
+    start() {
+      this.elements = document.getElementsByClassName("pixelBlock");
+      /*for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].addEventListener("mouseenter", this.paintMouseEnter);
+        this.elements[i].addEventListener("mousedown", this.paintMouseDown);
+      }*/
+    },
     paintMouseEnter: function (e) {
       if (this.clickElement) {
-        this.paint(e);
+        this.paint(e.target);
       }
     },
     paintMouseDown: function (e) {
-      this.ctx.beginPath();
-      console.log(e);
-      this.ctx.moveTo(e.clientX, e.clientY);
-      //this.paint(e);
+      this.paint(e.target);
     },
-    paintMouseUp: function (e) {
-      this.ctx.closePath();
-    },
-    paint(e) {
+    paint(element) {
       if (this.color === "transparent") {
-        //element.style.background = null;
+        element.style.background = null;
       } else {
-        //element.style.background = `#${this.color}`;
+        element.style.background = `#${this.color}`;
       }
-
-      /*
       const x = parseInt(element.getAttribute("data-pos-x"));
-      const y = parseInt(element.getAttribute("data-pos-y")); */
-      this.ctx.strokeStyle = "#" + this.color;
-      const x = e.layerX;
-      const y = e.layerY;
+      const y = parseInt(element.getAttribute("data-pos-y"));
       const color = this.color;
       const frame = this.frameSelected - 1;
-      this.ctx.lineTo(e.layerX, e.layerY);
-
-      this.ctx.stroke();
 
       //M0,0 50,0 50,50 0,50;
 
@@ -140,7 +140,7 @@ export default {
       this.$store.commit("addPixel", { x, y, color, frame });
     },
     loadDefaultData() {
-      /*const colors = this.frames[this.frameSelected - 1][0];
+      const colors = this.frames[this.frameSelected - 1][0];
 
       Object.keys(colors).forEach((color, index) => {
         const pixels = this.frames[this.frameSelected - 1][0][color].pixels;
@@ -154,7 +154,7 @@ export default {
           element.style.background = `#${color}`;
           //}
         });
-      }); */
+      });
     },
   },
 };
@@ -167,17 +167,8 @@ export default {
   max-height: 644px;
   overflow: auto;
   display: flex;
-
-  align-content: center;
-  justify-content: center;
   align-items: center;
-}
-
-canvas {
-  background: white;
-
-  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% / 1px
-    1px;
+  align-content: center;
 }
 .boxBlock {
   /* border: 2px solid var(--bg);*/

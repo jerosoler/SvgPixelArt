@@ -25,7 +25,6 @@ export default {
       let colors = [];
       Object.keys(this.$store.state.frames[this.frame][0]).forEach(
         (colorlist) => {
-          console.log(colorlist);
           colors.push(colorlist);
         }
       );
