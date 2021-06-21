@@ -23,7 +23,7 @@
         </div>
         <div class="column-center">
           <EditorBox title="Canvas">
-            <EditorCanvas />
+            <EditorCanvasLine />
           </EditorBox>
         </div>
         <div class="column-right">

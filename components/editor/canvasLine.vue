@@ -40,7 +40,7 @@ export default {
   watch: {
     clickElement(value) {
       if (value) {
-        //this.paintMouseDown();
+        this.paintMouseDown();
       } else {
         this.paintMouseUp();
       }
@@ -148,11 +148,12 @@ export default {
       }
     },
     paintMouseDown: function (e) {
+      this.ctx.beginPath();
       //this.ctx.moveTo(e.clientX, e.clientY);
       this.paint();
     },
     paintMouseUp: function (e) {
-      //this.ctx.closePath();
+      this.ctx.closePath();
     },
     paint() {
       const x = parseInt(this.pos.x / this.scale) + 1;
@@ -173,22 +174,37 @@ export default {
         );
       } else {
         //element.style.background = `#${this.color}`;
-        this.ctx.beginPath();
+        //this.ctx.beginPath();
 
-        //this.ctx.strokeStyle = "#" + this.color;
-        this.ctx.strokeStyle = "transparent";
-        this.ctx.fillStyle = "#" + this.color;
+        this.ctx.strokeStyle = "#" + this.color;
+        //this.ctx.strokeStyle = "transparent";
 
-        this.ctx.lineWidth = 0;
-        //this.ctx.lineTo(e.layerX, e.layerY);
-        this.ctx.rect(
+        //this.ctx.lineWidth = this.scale;
+        this.ctx.lineWidth = this.scale;
+        /*this.ctx.moveTo(
+          x * this.scale + this.scale / 2,
+          y * this.scale + this.scale / 2
+        ); 
+        this.ctx.lineTo(
+          x * this.scale - this.scale / 2,
+          y * this.scale + this.scale / 2
+        );*/
+        this.ctx.moveTo(
+          (x - 1) * this.scale + this.scale / 2,
+          (y - 1) * this.scale + this.scale / 2
+        );
+        this.ctx.lineTo(
+          (x - 1) * this.scale - this.scale / 2,
+          (y - 1) * this.scale + this.scale / 2
+        );
+        //console.log(x, y, this.scale);
+        /*this.ctx.rect(
           (x - 1) * this.scale,
           (y - 1) * this.scale,
           this.scale,
           this.scale
-        );
+        );*/
         this.ctx.stroke();
-        this.ctx.fill();
       }
 
       this.saveColor(x, y, color, frame);

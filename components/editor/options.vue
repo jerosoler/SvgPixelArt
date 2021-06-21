@@ -1,10 +1,10 @@
 <template>
   <div>
     Filex x:<br />
-    <input type="range" v-model="widthX" min="2" max="1000" /> {{ widthX }}
+    <input type="range" v-model="widthX" min="2" max="100" /> {{ widthX }}
     <br />
     Files y:<br />
-    <input type="range" v-model="heightY" min="2" max="1000" /> {{ heightY }}
+    <input type="range" v-model="heightY" min="2" max="100" /> {{ heightY }}
     <br />
     Seconds:<br />
     <input type="range" v-model="sec" min="0.1" max="50" step="0.10" />
