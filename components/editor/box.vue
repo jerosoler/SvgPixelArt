@@ -14,15 +14,29 @@ export default {
 
 <style scoped>
 .div {
-  display: block;
+  /*display: block;
   width: 100%;
   border-radius: 4px;
   background: var(--bg);
+  margin-bottom: 20px;*/
+
+  display: block;
+  width: 100%;
+  padding: 3px  3px 3px  0px;
   margin-bottom: 20px;
+  color: var(--color);
+  background-image: paint(pixelbox);
+  --pixelbox-border: 3px;
+  --pixelbox-border-radius: 1px;
+  --pixelbox-border-color: var(--color);
+  --pixelbox-background-color: var(--bg);
+  --pixelbox-background-shadow-border: 3px;
+  --pixelbox-background-shadow-color: var(--color);
+  --pixelbox-background-shadow-position: bottom-right;
 }
 h4 {
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--bg-editor);
+  padding: 10px 15px;
+  border-bottom: 3px solid var(--color);
 }
 .slot {
   padding: 10px;

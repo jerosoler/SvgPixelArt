@@ -38,14 +38,6 @@ export const state = () => ({
   */
 });
 
-/*export const getters = {
-  getFrame(state) {
-    return id => {
-      return state.frames[id][0];
-    };
-  }
-};*/
-
 export const mutations = {
   selectColor(state, color) {
     state.colorSelected = color;

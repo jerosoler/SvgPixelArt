@@ -86,6 +86,7 @@ export default {
     ); */
     this.start();
     this.loadDefaultData();
+    
   },
   methods: {
     clearData() {
@@ -186,7 +187,5 @@ export default {
     20px 20px;
 }
 
-.pixelBlock:hover {
-  border: 1px solid;
-}
+
 </style>

@@ -49,7 +49,7 @@ export default {
 }
 .color {
   display: inline-block;
-  width: 40px;
+  width: 25%;
   height: 40px;
   cursor: pointer;
   /*border: 2px solid var(--bg);

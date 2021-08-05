@@ -1,9 +1,9 @@
 <template>
   <div class="editor">
     <div class="container">
-      <div class="headerEditor">
+      <!--<div class="headerEditor">
         <EditorHeader />
-      </div>
+      </div>-->
       <div class="bodyEditor">
         <div class="column-pre-left">
           <EditorBox title="Frames">
@@ -17,13 +17,13 @@
           <EditorBox title="Frame Colors">
             <EditorColorsFrame />
           </EditorBox>
-          <EditorBox title="Layers">
+          <!--<EditorBox title="Layers">
             <EditorLayers />
-          </EditorBox>
+          </EditorBox>-->
         </div>
         <div class="column-center">
           <EditorBox title="Canvas">
-            <EditorCanvasLine />
+            <EditorCanvasBlock />
           </EditorBox>
         </div>
         <div class="column-right">
@@ -53,16 +53,17 @@
 .container {
   display: block;
   position: relative;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
 
   margin-left: 20px;
   margin-right: 20px;
+  /*
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 0px;
 
-  background: var(--bg-editor);
+  /*background: var(--bg-editor); */
 }
 .headerEditor {
   text-align: right;

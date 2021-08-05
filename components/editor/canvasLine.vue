@@ -115,6 +115,9 @@ export default {
     });
   },
   methods: {
+    clickValue(value) {
+      this.$store.commit("clickState", value);
+    },
     zoomIn() {
       if (this.scale < 40) {
         this.scale++;
@@ -160,7 +163,7 @@ export default {
       const y = parseInt(this.pos.y / this.scale) + 1;
       const color = this.color;
       const frame = this.frameSelected - 1;
-
+      /*
       if (this.color === "transparent") {
         //element.style.background = null;
         this.ctx.strokeStyle = "transparent";
@@ -181,14 +184,9 @@ export default {
 
         //this.ctx.lineWidth = this.scale;
         this.ctx.lineWidth = this.scale;
-        /*this.ctx.moveTo(
-          x * this.scale + this.scale / 2,
-          y * this.scale + this.scale / 2
-        ); 
-        this.ctx.lineTo(
-          x * this.scale - this.scale / 2,
-          y * this.scale + this.scale / 2
-        );*/
+        
+
+     
         this.ctx.moveTo(
           (x - 1) * this.scale + this.scale / 2,
           (y - 1) * this.scale + this.scale / 2
@@ -198,19 +196,16 @@ export default {
           (y - 1) * this.scale + this.scale / 2
         );
         //console.log(x, y, this.scale);
-        /*this.ctx.rect(
-          (x - 1) * this.scale,
-          (y - 1) * this.scale,
-          this.scale,
-          this.scale
-        );*/
+
         this.ctx.stroke();
       }
+      */
 
       this.saveColor(x, y, color, frame);
     },
     saveColor(x, y, color, frame) {
       this.$store.commit("addPixel", { x, y, color, frame });
+      this.loadDefaultData();
     },
     loadDefaultData() {
       const colors = this.frames[this.frameSelected - 1][0];

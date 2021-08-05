@@ -32,3 +32,33 @@ body {
   font-display: swap;
   src: url("~assets/fonts/PressStart2P-Regular.ttf") format("truetype");
 }
+
+
+button {
+  display: block;
+  font-family: "PS2P";
+  background-color: transparent;
+  cursor: pointer;
+  border: 0px;
+  font-size: 12px;
+  padding: 15px 15px;
+  margin: 5px 0px; 
+  color: var(--color);
+  background-image: paint(pixelbox);
+  --pixelbox-border: 3px;
+  --pixelbox-border-radius: 0;
+  --pixelbox-border-color: var(--color);
+  --pixelbox-background-color:var(--bg);
+  --pixelbox-background-shadow-border: 3px;
+  --pixelbox-background-shadow-color: #adafbc;
+  --pixelbox-background-shadow-position: bottom-right; 
+}
+button:active {
+  --pixelbox-background-shadow-position: top-left; 
+}
+
+button:hover {
+  color: black;
+  --pixelbox-background-color: #e7e7e7;
+  --pixelbox-background-shadow-border: 4px;
+}

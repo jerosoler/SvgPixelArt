@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "css-houdini-pixel-box": "^0.0.1",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
