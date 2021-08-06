@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="canvas">
-      <div class="boxBlock">
+    <div class="canvas" 
+    >
+      <div class="boxBlock"  ref="canvas"
+     :style="`transform: scale(${scale}); min-width:${width * 20 * scale}px; height:${height * 20 * scale}px; transform-origin: ${scale < 1 ? width * 20 * scale : 0 }px 0px; max-height: 644px;`">
         <div class="fileBlock" v-for="indexx in height" :key="`x-${indexx}`">
           <div
             class="pixelBlock"
@@ -73,6 +75,7 @@ export default {
   data() {
     return {
       elements: null,
+      scale: 1,
     };
   },
   mounted() {
@@ -86,9 +89,30 @@ export default {
     ); */
     this.start();
     this.loadDefaultData();
-    
+     this.$refs.canvas.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+          this.zoomIn();
+        } else {
+          this.zoomOut();
+        }
+      },
+      false
+    );
   },
   methods: {
+    zoomIn() {
+      if (this.scale < 2) {
+        this.scale+=0.05;
+      }
+    },
+    zoomOut() {
+      if (this.scale > 0.4) {
+        this.scale-=0.05;
+      }
+    },
     clearData() {
       for (var i = 0; i < this.elements.length; i++) {
         /*this.elements[i].removeEventListener(

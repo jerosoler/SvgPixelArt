@@ -131,7 +131,7 @@ export const mutations = {
         }
       }
       // }
-    });
+    }); 
 
     if (color !== "transparent") {
       // Create color
@@ -142,7 +142,7 @@ export const mutations = {
         });
       }
       // Add Color
-      const coodenats = { x, y };
+      //const coodenats = { x, y };
       state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
       //Vue.set(state.frames[state.frameSelected - 1][0][color], "pixels", coodenats);
     }

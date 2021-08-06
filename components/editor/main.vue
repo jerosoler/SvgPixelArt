@@ -24,7 +24,15 @@
         <div class="column-center">
           <EditorBox title="Canvas">
             <EditorCanvasBlock />
-          </EditorBox>
+          </EditorBox> 
+
+          <!-- <EditorBox title="Canvas">
+            <EditorCanvasLine />
+          </EditorBox> -->
+
+          <!--<EditorBox title="Canvas">
+            <EditorCanvas />
+          </EditorBox>-->
         </div>
         <div class="column-right">
           <EditorBox title="Preview">
