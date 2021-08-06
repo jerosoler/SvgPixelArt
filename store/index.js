@@ -2,6 +2,7 @@ import Vue from "vue";
 
 export const state = () => ({
   clickValue: false,
+  weapon: 'Pencil',
   colorSelected: "ff0000",
   frameSelected: 1,
   width: 32,
@@ -39,6 +40,9 @@ export const state = () => ({
 });
 
 export const mutations = {
+  selectWeapon(state, weapon) {
+    state.weapon = weapon;
+  },
   selectColor(state, color) {
     state.colorSelected = color;
   },

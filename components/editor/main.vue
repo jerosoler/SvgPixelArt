@@ -11,6 +11,9 @@
           </EditorBox>
         </div>
         <div class="column-left">
+          <EditorBox title="Weapons">
+             <EditorWeapons />
+          </EditorBox> 
           <EditorBox title="Colors">
             <EditorColors />
           </EditorBox>
@@ -22,6 +25,8 @@
           </EditorBox>-->
         </div>
         <div class="column-center">
+          
+
           <EditorBox title="Canvas">
             <EditorCanvasBlock />
           </EditorBox> 
@@ -35,7 +40,7 @@
           </EditorBox>-->
         </div>
         <div class="column-right">
-          <EditorBox title="Preview">
+          <EditorBox title="Minimap">
             <EditorPreview />
           </EditorBox>
           <EditorBox title="Options">
