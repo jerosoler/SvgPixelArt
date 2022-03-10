@@ -1,5 +1,5 @@
 <template>
-  <div class="editor">
+  <div id="editor" class="editor">
     <div class="container">
       <!--<div class="headerEditor">
         <EditorHeader />
@@ -12,8 +12,8 @@
         </div>
         <div class="column-left">
           <EditorBox title="Weapons">
-             <EditorWeapons />
-          </EditorBox> 
+            <EditorWeapons />
+          </EditorBox>
           <EditorBox title="Colors">
             <EditorColors />
           </EditorBox>
@@ -27,17 +27,17 @@
         <div class="column-center">
           
 
-          <EditorBox title="Canvas">
+          <!--<EditorBox title="Canvas">
             <EditorCanvasBlock />
-          </EditorBox> 
-
-          <!-- <EditorBox title="Canvas">
-            <EditorCanvasLine />
           </EditorBox> -->
 
           <!--<EditorBox title="Canvas">
-            <EditorCanvas />
+            <EditorCanvasLine />
           </EditorBox>-->
+
+          <EditorBox title="Canvas">
+            <EditorCanvas />
+          </EditorBox>
         </div>
         <div class="column-right">
           <EditorBox title="Minimap">
@@ -45,6 +45,9 @@
           </EditorBox>
           <EditorBox title="Options">
             <EditorOptions />
+          </EditorBox>
+          <EditorBox title="Export">
+            <EditorExport />
           </EditorBox>
         </div>
       </div>
@@ -62,6 +65,10 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  background: var(--bg);
+}
+.editor:fullscreen {
+  padding: 15px;
 }
 .container {
   display: block;

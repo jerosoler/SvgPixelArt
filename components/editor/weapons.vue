@@ -7,7 +7,8 @@
       @click="selectWeapon(w)"
       class="weapon"
       :class="weapon === w ? `selected ` : ``"
-    >{{w}}</div>
+      :style="`background-image: url(icons/${w}.svg);`"
+    ></div>
   </div>
 </template>
 
@@ -42,15 +43,12 @@ export default {
   
 }
 .weapon {
-  display: block;
-  width: 100%;
-  height: 40px;
-  cursor: pointer;
-  color: var(--color);
-  font-size: 12px;
-  line-height: 40px;
-  /*border: 2px solid var(--bg);
-  margin: 5px;*/
+   display: inline-block;
+   width: 25%;
+   height: 40px;
+   background-size: 30px;
+   background-position: center center;
+   background-repeat: no-repeat;
 }
 
 .selected {

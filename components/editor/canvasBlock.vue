@@ -139,11 +139,11 @@ export default {
       this.paint(e.target);
     },
     paint(element) {
-      if (this.color === "transparent") {
+      /*if (this.color === "transparent") {
         element.style.background = null;
       } else {
         element.style.background = `#${this.color}`;
-      }
+      } */
       const x = parseInt(element.getAttribute("data-pos-x"));
       const y = parseInt(element.getAttribute("data-pos-y"));
       const color = this.color;
@@ -163,8 +163,10 @@ export default {
     },
     saveColor(x, y, color, frame) {
       this.$store.commit("addPixel", { x, y, color, frame });
+      this.loadDefaultData();
     },
     loadDefaultData() {
+      this.clearData();
       const colors = this.frames[this.frameSelected - 1][0];
 
       Object.keys(colors).forEach((color, index) => {

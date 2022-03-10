@@ -12,6 +12,7 @@
         Del
       </div>
       <svg
+        xmlns="http://www.w3.org/2000/svg"
         width="100%"
         height="100%"
         :viewBox="`0 0 ${width * pixelWH} ${height * pixelWH}`"
@@ -87,6 +88,11 @@ export default {
   min-height: 50px;
   width: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
   background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
     20px 20px;
 }

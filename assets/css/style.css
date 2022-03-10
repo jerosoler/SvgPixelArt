@@ -1,5 +1,5 @@
 :root {
-  --bg: #ffffff;
+  --bg: #c5c4c4;
   --color: #1c1c1c;
   --bg-editor: #2d2d2d;
 }
@@ -60,5 +60,15 @@ button:active {
 button:hover {
   color: black;
   --pixelbox-background-color: #e7e7e7;
+  --pixelbox-background-shadow-border: 4px;
+}
+
+button.success {
+  --pixelbox-background-color: #92cc41;
+  --pixelbox-background-shadow-color: #4aa52e;
+}
+
+button.success:hover {
+  --pixelbox-background-color: #76c442;
   --pixelbox-background-shadow-border: 4px;
 }

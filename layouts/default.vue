@@ -1,14 +1,20 @@
 <template>
-  <div @mousedown="clickValue(true)" @mouseup="clickValue(false)">
+  <div @mousedown="clickValueTrue" @mouseup="clickValueFalse">
     <TemplateTheHeader class="header" />
     <Nuxt />
   </div>
 </template>
 <script>
 export default {
+  mounted() {
+    document.addEventListener('contextmenu', event => event.preventDefault());
+  },
   methods: {
-    clickValue(value) {
-      this.$store.commit("clickState", value);
+    clickValueTrue(event) {
+      this.$store.commit("clickState", { clickValue: true, clickButton: event.button});
+    },
+     clickValueFalse(event) {
+      this.$store.commit("clickState", { clickValue: false, clickButton: null});
     },
   },
 };

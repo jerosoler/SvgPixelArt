@@ -2,26 +2,16 @@ import Vue from "vue";
 
 export const state = () => ({
   clickValue: false,
+  clickButton: null,
   weapon: 'Pencil',
-  colorSelected: "ff0000",
+  colorSelected: "000000",
   frameSelected: 1,
   width: 32,
   height: 32,
   pixelWH: 1,
   seconds: 1,
   frames: [
-    [
-      {
-        ff0000: { pixels: [{ x: 1, y: 1 }] },
-        ff9900: { pixels: [{ x: 2, y: 2 }] }
-      }
-    ],
-    [
-      {
-        ff0000: { pixels: [{ x: 3, y: 3 }] },
-        ff9900: { pixels: [{ x: 4, y: 4 }] }
-      }
-    ]
+    [ {} ]
   ]
   //frames: [[{ color: "ff0000", pixels: ["M0,0 50,0 50,50 0,50"] }]]
   /*  Example complet frames
@@ -85,8 +75,9 @@ export const mutations = {
   selectFrame(state, frame) {
     state.frameSelected = frame;
   },
-  clickState(state, clickValue) {
+  clickState(state, {clickValue, clickButton}) {
     state.clickValue = clickValue;
+    state.clickButton = clickButton;
   },
   updateLayout(state, { pixel, width, height, seconds }) {
     state.pixelWH = pixel;
@@ -113,42 +104,236 @@ export const mutations = {
     state.seconds = seconds;
   },
   addPixel(state, { x, y, color }) {
-    // Search if exist object
     const colors = state.frames[state.frameSelected - 1][0];
 
-    Object.keys(colors).forEach(colorlist => {
-      const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
-      const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
-
-      //if (colorlist !== color) {
-      if (indexSlice > -1) {
-        if (pixels.length > 1) {
-          // Remove Object
-          state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
-            indexSlice,
-            1
-          );
-        } else {
-          // Remove Color
-          //delete state.frames[state.frameSelected - 1][0][colorlist];
-          Vue.delete(state.frames[state.frameSelected - 1][0], colorlist);
-        }
-      }
-      // }
-    }); 
-
-    if (color !== "transparent") {
-      // Create color
-      if (state.frames[state.frameSelected - 1][0][color] === undefined) {
-        //state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
-        Vue.set(state.frames[state.frameSelected - 1][0], color, {
-          pixels: []
-        });
-      }
-      // Add Color
-      //const coodenats = { x, y };
-      state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
-      //Vue.set(state.frames[state.frameSelected - 1][0][color], "pixels", coodenats);
+    if(state.clickButton === 2) {
+      color = 'transparent';
     }
+    switch (state.weapon) {
+      case 'Pencil':
+        // Search if exist object
+        Object.keys(colors).forEach(colorlist => {
+          const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
+          const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
+
+          if (indexSlice > -1) {
+            if (pixels.length > 1) {
+              // Remove Object
+              state.frames[state.frameSelected - 1][0][colorlist].pixels.splice(
+                indexSlice,
+                1
+              );
+            } else {
+              // Remove Color
+              //delete state.frames[state.frameSelected - 1][0][colorlist];
+              Vue.delete(state.frames[state.frameSelected - 1][0], colorlist);
+            }
+          }
+        }); 
+
+        if (color !== "transparent") {
+          // Create color
+          if (state.frames[state.frameSelected - 1][0][color] === undefined) {
+            //state.frames[state.frameSelected - 1][0][color] = { pixels: [] };
+            Vue.set(state.frames[state.frameSelected - 1][0], color, {
+              pixels: []
+            });
+          }
+          // Add Color
+          state.frames[state.frameSelected - 1][0][color].pixels.push({ x, y });
+        }
+        break;
+      case 'Paint':
+         // Search if exist object
+         
+         let ColorClick = null;
+         Object.keys(colors).forEach(colorlist => {
+           const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
+           const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
+ 
+           if (indexSlice > -1) {
+              ColorClick = colorlist;
+           }
+         }); 
+         
+         function paintPixel(x,y) {
+          let colorSearch = null;
+          Object.keys(colors).forEach(colorlist => {
+            const pixels = state.frames[state.frameSelected - 1][0][colorlist].pixels;
+            const indexSlice = pixels.findIndex(ele => ele.x === x && ele.y === y);
+  
+            if (indexSlice > -1) {
+              colorSearch = colorlist;
+            }
+            
+          }); 
+          return colorSearch;
+         }
+         if(ColorClick === null) {
+           // Only add color
+           if(color !== "transparent") {
+            if (state.frames[state.frameSelected - 1][0][color] === undefined) {
+              Vue.set(state.frames[state.frameSelected - 1][0], color, {
+                pixels: []
+              });
+            }
+            // Search and paint
+            
+            const pixelstopaint = [];
+            (async ()=>{
+              let pos_x = x;
+              let pos_y = y;
+              while (pos_y) {
+                const colorSearch = paintPixel(pos_x,pos_y)
+                if(colorSearch == ColorClick) {
+                  pixelstopaint.push({x: pos_x, y: pos_y });
+                  let pos_yx = pos_x;
+                  while (pos_yx) {
+                    const colorSearch = paintPixel(pos_yx,pos_y)
+                    if(colorSearch == ColorClick) {
+                      pixelstopaint.push({ x: pos_yx, y: pos_y });
+                      pos_yx++;
+                    } else {
+                      break;
+                    }
+                    if(pos_yx > state.width) {
+                      break;
+                    }
+                  }
+                  pos_y++;
+                } else {
+                  break;
+                }
+                if(pos_y > state.height) {
+                  break;
+                }
+              }
+              })();
+
+              (async ()=>{
+              let pos_x = x;
+              let pos_y = y;
+              while (pos_y) {
+                const colorSearch = paintPixel(pos_x,pos_y)
+                if(colorSearch == ColorClick) {
+                  pixelstopaint.push({x: pos_x, y: pos_y });
+                  let pos_yx = pos_x;
+                  while (pos_yx) {
+                    const colorSearch = paintPixel(pos_yx,pos_y)
+                    if(colorSearch == ColorClick) {
+                      pixelstopaint.push({ x: pos_yx, y: pos_y });
+                      pos_yx--;
+                    } else {
+                      break;
+                    }
+                    if(pos_yx == 0) {
+                      break;
+                    }
+                    
+                  }
+                  pos_y--;
+                } else {
+                  break;
+                }
+                if(pos_y == 0) {
+                  break;
+                }
+              }
+            })();
+
+            (async ()=>{
+              let pos_x = x;
+              let pos_y = y;
+              while (pos_y) {
+                const colorSearch = paintPixel(pos_x,pos_y)
+                if(colorSearch == ColorClick) {
+                  pixelstopaint.push({x: pos_x, y: pos_y });
+                  let pos_yx = pos_x;
+                  while (pos_yx) {
+                    const colorSearch = paintPixel(pos_yx,pos_y)
+                    if(colorSearch == ColorClick) {
+                      pixelstopaint.push({ x: pos_yx, y: pos_y });
+                      pos_yx--
+                    } else {
+                      break;
+                    }
+                    if(pos_yx == 0) {
+                      break;
+                    }
+                  }
+                  pos_y++;
+                } else {
+                  break;
+                }
+                if(pos_y > state.height) {
+                  break;
+                }
+              }
+              })();
+
+              (async ()=>{
+              let pos_x = x;
+              let pos_y = y;
+              while (pos_y) {
+                const colorSearch = paintPixel(pos_x,pos_y)
+                if(colorSearch == ColorClick) {
+                  pixelstopaint.push({x: pos_x, y: pos_y });
+                  let pos_yx = pos_x;
+                  while (pos_yx) {
+                    const colorSearch = paintPixel(pos_yx,pos_y)
+                    if(colorSearch == ColorClick) {
+                      pixelstopaint.push({ x: pos_yx, y: pos_y });
+                      pos_yx++
+                    } else {
+                      break;
+                    }
+                    if(pos_yx > state.width) {
+                      break;
+                    }
+                    
+                  }
+                  pos_y--;
+                } else {
+                  break;
+                }
+                if(pos_y == 0) {
+                  break;
+                }
+              }
+            })();
+            /*
+            pixelstopaint.forEach((item) => {
+              state.frames[state.frameSelected - 1][0][color].pixels.push({ x: item.x, y: item.y });
+            }) */
+            
+            state.frames[state.frameSelected - 1][0][color].pixels = state.frames[state.frameSelected - 1][0][color].pixels.concat(pixelstopaint);
+
+           }
+         } else {
+           // Remove color
+
+           if(color !== "transparent") {
+            //Add Color 
+            if (state.frames[state.frameSelected - 1][0][color] === undefined) {
+              /*Vue.set(state.frames[state.frameSelected - 1][0], color, {
+                pixels: []
+              });*/
+            }
+            // Search and paint
+            
+
+           }
+         }
+
+
+      
+      break;
+    
+      default:
+        break;
+    }
+    
   }
 };
+
+
