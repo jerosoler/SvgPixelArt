@@ -19,7 +19,7 @@ export default {
   border-radius: 4px;
   background: var(--bg);
   margin-bottom: 20px;*/
-
+  box-sizing: border-box;
   display: block;
   width: 100%;
   padding: 3px  3px 3px  0px;
@@ -39,6 +39,10 @@ h4 {
   border-bottom: 3px solid var(--color);
 }
 .slot {
+  position:relative;
+  display:block;
+  box-sizing: border-box;
   padding: 10px;
+  height: 100%;
 }
 </style>

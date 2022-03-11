@@ -9,11 +9,18 @@
   --color: #ffffff;
 }
 
+input {
+  accent-color: var(--color);
+}
+
 body {
   user-select: none;
   background: var(--bg);
   color: var(--color);
   cursor: url('/icons/Cursor.svg'), auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {

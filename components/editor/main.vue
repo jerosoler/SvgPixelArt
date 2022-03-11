@@ -17,7 +17,7 @@
           <EditorBox title="Colors">
             <EditorColors />
           </EditorBox>
-          <EditorBox title="Frame Colors">
+          <EditorBox title="Frame Colors" v-if="colors.length > 0">
             <EditorColorsFrame />
           </EditorBox>
           <!--<EditorBox title="Layers">
@@ -35,7 +35,7 @@
             <EditorCanvasLine />
           </EditorBox>-->
 
-          <EditorBox title="Canvas">
+          <EditorBox title="Canvas" class="canvas">
             <EditorCanvas />
           </EditorBox>
         </div>
@@ -55,6 +55,26 @@
     </div>
   </div>
 </template>
+<script>
+
+export default {
+  computed: { 
+    frame() {
+      return this.$store.state.frameSelected - 1;
+    },
+    colors() {
+      let colors = [];
+      Object.keys(this.$store.state.frames[this.frame][0]).forEach(
+        (colorlist) => {
+          colors.push(colorlist);
+        }
+      );
+      colors = [...new Set(colors)];
+      return colors;
+    },
+  },
+}
+</script>
 
 <style scoped>
 .editor {
@@ -63,6 +83,7 @@
   position: relative;
   left: 50%;
   right: 50%;
+  
   margin-left: -50vw;
   margin-right: -50vw;
   background: var(--bg);
@@ -74,7 +95,7 @@
   display: block;
   position: relative;
   /*border-radius: 4px;*/
-
+  height: calc(100vh - 100px);
   margin-left: 20px;
   margin-right: 20px;
   /*
@@ -106,5 +127,15 @@
 .column-right {
   display: flex;
   flex-direction: column;
+}
+.column-center {
+  height: calc(100vh - 100px);
+}
+.column-right, .column-pre-left, .column-left  {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.canvas {
+  height: 100%;
 }
 </style>

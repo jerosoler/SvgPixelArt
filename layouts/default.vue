@@ -2,6 +2,7 @@
   <div @mousedown="clickValueTrue" @mouseup="clickValueFalse">
     <TemplateTheHeader class="header" />
     <Nuxt />
+    <TemplateTheFooter class="footerhome" />
   </div>
 </template>
 <script>
@@ -40,9 +41,12 @@ html {
   margin: 0;
 }
 
-.header {
+.header, .footerhome {
   min-height: 60px;
   max-width: 1140px;
   margin: auto;
+}
+.footerhome {
+  min-height: 40px;
 }
 </style>

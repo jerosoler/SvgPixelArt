@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div>Logo</div>
+    <div id="logo"><img src="/icons/Logo.svg" height="40px"></div>
     <div class="options">
       <div
         v-if="$colorMode.preference !== 'light'"
@@ -10,16 +10,36 @@
         
       </div>
       <div v-else @click="$colorMode.preference = 'dark'" class="darkmode dark"></div>
-      <div @click="fullscreen" class="fullscreen"></div>
+      <div v-if="!fullscreen" @click="fullscreenOpen" class="fullscreen fullscreenOpen"></div>
+      <div v-else @click="fullscreenClose" class="fullscreen fullscreenClose"></div>
     </div>
   </header>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      fullscreen: false,
+    }
+  },
+  mounted() {
+    document.addEventListener('fullscreenchange', this.changeScreen, false);
+  },
   methods: {
-    fullscreen() {
-      const ele = document.getElementById("editor");
+    fullscreenOpen() {
+      //const ele = document.getElementById("editor");
+      const ele = document.documentElement;
       ele.requestFullscreen();
+    },
+    fullscreenClose() {
+      document.exitFullscreen();
+    },
+    changeScreen() {
+      if (document.fullscreenElement) {
+        this.fullscreen = true;
+      } else {
+        this.fullscreen = false;
+      }
     }
   }
 }
@@ -53,7 +73,10 @@ header {
 .dark {
   background-image: url('/icons/Night.svg');
 }
-.fullscreen {
+.fullscreenOpen {
   background-image: url('/icons/Fullscreen.svg');
+}
+.fullscreenClose {
+  background-image: url('/icons/Downscreen.svg');
 }
 </style>

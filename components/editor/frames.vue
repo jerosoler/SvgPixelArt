@@ -41,9 +41,9 @@ ul {
   flex-direction: column;
   align-items: center;
   list-style-type: none;
-  max-height: 644px;
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: 100%;
 }
 .frame {
   border: 2px solid var(--color);

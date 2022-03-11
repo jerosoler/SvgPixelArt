@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="beforecanvas">
     <div class="canvas" >
       <div class="precanvas">
        <canvas
@@ -263,12 +263,17 @@ export default {
 };
 </script>    
 <style scoped>
+.beforecanvas {
+  display: block;
+  position:relative;
+  height: 100%;
+}
 .canvas {
   position: relative;
-  min-height: 644px;
-  max-height: 644px;
+  /*min-height: 644px;
+  max-height: 644px;*/
   width: 100%;
-  height: 100%;
+  height: calc(100% - 70px);
   overflow: auto;
   margin: 0 auto;
   display: flex;
@@ -339,7 +344,9 @@ canvas.Pencil:hover {
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
+  margin-top: 5px;
    background-image: paint(pixelbox);
   --pixelbox-border: 3px;
   --pixelbox-border-radius: 1px;
@@ -349,4 +356,5 @@ canvas.Pencil:hover {
   --pixelbox-background-shadow-color: var(--color);
   --pixelbox-background-shadow-position: bottom-right;
 }
+
 </style>
