@@ -7,10 +7,8 @@
   <div class="box">
     <div class="frame">
       <div class="number">{{ doc + 1 }}</div>
-      <div class="duplicate" @click="duplicate">DD</div>
-      <div class="del" @click="del" v-if="this.$store.state.frames.length > 1">
-        Del
-      </div>
+      <div class="duplicate" @click="duplicate"></div>
+      <div class="del" @click="del" v-if="this.$store.state.frames.length > 1"></div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
@@ -142,6 +140,15 @@ svg {
 .del,
 .duplicate {
   opacity: 0;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center center;
+}
+.del {
+  background-image: url('/icons/Delete.svg');
+}
+.duplicate {
+  background-image: url('/icons/Duplicate.svg');
 }
 
 .frame:hover .number,

@@ -70,7 +70,6 @@ export default {
       if (value) {
         //this.paintMouseDown();
       } else {
-        console.log("up");
         this.paintMouseUp();
       }
     },

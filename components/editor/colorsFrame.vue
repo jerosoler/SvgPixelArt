@@ -50,7 +50,7 @@ export default {
   display: inline-block;
   width: 25%;
   height: 40px;
-  cursor: pointer;
+  cursor: url('/icons/Pointer.svg') 4 0, pointer;
   /*border: 2px solid var(--bg);
   margin: 5px;*/
 }

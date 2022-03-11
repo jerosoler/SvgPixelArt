@@ -10,8 +10,10 @@
 }
 
 body {
+  user-select: none;
   background: var(--bg);
   color: var(--color);
+  cursor: url('/icons/Cursor.svg'), auto;
 }
 
 ::-webkit-scrollbar {
@@ -58,6 +60,7 @@ button:active {
 }
 
 button:hover {
+  cursor: url('/icons/Pointer.svg') 4 0, pointer;
   color: black;
   --pixelbox-background-color: #e7e7e7;
   --pixelbox-background-shadow-border: 4px;

@@ -50,6 +50,9 @@ export default {
    background-position: center center;
    background-repeat: no-repeat;
 }
+.weapon:hover {
+  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+}
 
 .selected {
   border: 3px dashed var(--color);
