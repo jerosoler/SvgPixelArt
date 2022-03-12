@@ -28,12 +28,23 @@ export default {
       return this.$store.state.seconds;
     },
   },
+  watch: {
+    width() {
+      this.widthX = this.width;
+    },
+    height() {
+      this.heightY = this.height;
+    },
+    seconds() {
+      this.sec = this.seconds;
+    }
+  },
   data() {
     return {
-      pixel: 0,
-      widthX: 0,
-      heightY: 0,
-      sec: 0,
+      pixel: this.pixelWH,
+      widthX: this.width,
+      heightY: this.height,
+      sec: this.seconds,
     };
   },
   mounted() {

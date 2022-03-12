@@ -30,6 +30,14 @@ export const state = () => ({
 });
 
 export const mutations = {
+  importFile(state, {file}) {
+    state.frameSelected = 1;
+    state.frames = file.frames;
+    state.width = file.width;
+    state.height = file.height;
+    state.seconds = file.seconds;
+    
+  },
   selectWeapon(state, weapon) {
     state.weapon = weapon;
   },

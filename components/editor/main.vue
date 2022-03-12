@@ -17,9 +17,7 @@
           <EditorBox title="Colors">
             <EditorColors />
           </EditorBox>
-          <EditorBox title="Frame Colors" v-if="colors.length > 0">
-            <EditorColorsFrame />
-          </EditorBox>
+          
           <!--<EditorBox title="Layers">
             <EditorLayers />
           </EditorBox>-->
@@ -39,6 +37,16 @@
             <EditorCanvas />
           </EditorBox>
         </div>
+
+        <div class="column-pre-right">
+          <EditorBox title="Fr. Options" >
+
+          </EditorBox>
+          <EditorBox title="Fr. Colors" v-if="colors.length > 0">
+            <EditorColorsFrame />
+          </EditorBox>
+        </div>
+
         <div class="column-right">
           <EditorBox title="Minimap">
             <EditorPreview />
@@ -115,7 +123,7 @@ export default {
   justify-content: space-between;*/
 
   display: grid;
-  grid-template-columns: 120px 180px minmax(300px, 1fr) 240px;
+  grid-template-columns: 120px 180px minmax(300px, 1fr) 180px 240px;
 
   gap: 0px 20px;
   grid-auto-flow: row;
@@ -131,7 +139,7 @@ export default {
 .column-center {
   height: calc(100vh - 100px);
 }
-.column-right, .column-pre-left, .column-left  {
+.column-right, .column-pre-left, .column-left, .column-pre-right {
   max-height: calc(100vh - 100px);
   overflow-y: auto;
 }

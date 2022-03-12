@@ -86,6 +86,17 @@ button.success:hover {
   --pixelbox-background-color: #76c442;
   --pixelbox-background-shadow-border: 4px;
 }
+
+button.info {
+  --pixelbox-background-color: #209cee;
+  --pixelbox-background-shadow-color: #006bb3;
+}
+
+button.info:hover {
+  --pixelbox-background-color: #108de0;
+  --pixelbox-background-shadow-border: 4px;
+}
+
 label {
   margin-top: 4px;
   margin-bottom: 4px;

@@ -1,11 +1,17 @@
 <template>
   <div>
-    <button class="success" @click="exportSvg">Download</button>
+    <button class="success" @click="exportSvg">Download SVG</button>
+    <button class="info" @click="exportPixelArt">Save</button>
+    <button class="info" @click="importPixelArt">Import</button>
+    <input type="file" id="importPixelArt" accept=".svgpixelart" @change="importPixelArtFile" style="display:none;">
   </div>
 </template>
 <script>
 export default {
     computed: {
+        state() {
+          return this.$store.state;
+        },
         width() {
             return this.$store.state.width;
         },
@@ -33,6 +39,41 @@ export default {
         },
     },
   methods: {
+    importPixelArt() {
+      const buttonimport = document.getElementById("importPixelArt");
+      buttonimport.click();
+    },
+    importPixelArtFile(event) {
+         const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.readAsText(file, "UTF-8");
+          reader.onload = (evt) => {
+            this.$store.commit("importFile", { file: JSON.parse(evt.target.result)});
+            //this.$store.commit("importFile", 'testaaaa');
+            const buttonimport = document.getElementById("importPixelArt");
+            buttonimport.value = "";
+          }
+
+    },
+    exportPixelArt() {
+        const state = {};
+        /*state.frames = file.frames;
+          state.width = file.width;
+          state.height = file.height;
+          state.seconds = file.seconds;*/
+        state.frames = this.state.frames;
+        state.width = this.state.width;
+        state.height = this.state.height;
+        state.seconds = this.state.seconds;
+        const jsonData = JSON.stringify(state);
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(jsonData);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = dataUri;
+        downloadLink.download = `${Date.now()}.svgpixelart`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    },
     transformToSvg(data) {
       let svg_moveto = "";
       data.forEach((pos) => {

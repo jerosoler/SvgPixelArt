@@ -8,6 +8,7 @@
       :class="color === c ? `selected ${c}` : `${c}`"
       :style="`background: #${c};`"
     ></div>
+    <input type="color" class="inputcolor" :class="color == colorinput ? 'selected' : ''" :value="`#${inputcolor}`" @click="colorinput" @change="colorinput" >
   </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
   },
   data() {
     return {
+      inputcolor: "FF1486",
       colors: [
         "transparent",'ffffff', 'b8b5b9', '868188',
         '646365', '45444f', '313038', '000000',
@@ -39,6 +41,16 @@ export default {
   },
  
   methods: {
+    colorinput(event) {
+      const c = event.target.value.substring(1);
+      this.inputcolor = c;
+      this.$store.commit("selectColor", c);
+      
+      console.log(this.inputcolor, this.color);
+      if(this.inputcolor == this.color) {
+        console.log("yes");
+      }
+    },
     selectColor(c) {
       this.$store.commit("selectColor", c);
     }
@@ -47,6 +59,18 @@ export default {
 </script>
 
 <style scoped>
+.inputcolor {
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  margin: 0px;
+  margin-top: 5px;
+  padding: 0px;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+}
 .colors {
   display: block;
   font-size: 0;
