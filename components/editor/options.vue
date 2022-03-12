@@ -1,15 +1,14 @@
 <template>
   <div>
-    Filex x:<br />
-    <input type="range" v-model="widthX" min="2" max="100" /> {{ widthX }}
-    <br />
-    Files y:<br />
-    <input type="range" v-model="heightY" min="2" max="100" /> {{ heightY }}
-    <br />
-    Seconds:<br />
-    <input type="range" v-model="sec" min="0.1" max="50" step="0.10" />
+    <label for="optionsfilex">Files x:</label>
+    <input id="optionsfilex" type="range" name="filex" v-model="widthX" min="2" max="100" /> {{ widthX }}
+    
+    <label for="optionsfiley">Files y:</label>
+    <input id="optionsfiley" type="range" name="filey"  v-model="heightY" min="2" max="100" /> {{ heightY }}
+    
+    <label for="optionsseconds">Seconds:</label>
+    <input id="optionsseconds" type="range" name="seconds" v-model="sec" min="0.1" max="50" step="0.10" />
     {{ sec }}s
-    <br />
     <button @click="update">Update</button>
   </div>
 </template>

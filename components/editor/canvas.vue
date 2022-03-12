@@ -18,7 +18,7 @@
         :width="width * scale"
         :height="height * scale"
         :class="weapon"
-        :style="`background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% / ${scale}px ${scale}px;`"
+        :style="`background: repeating-conic-gradient(var(--canvas-one) 0% 25%, var(--canvas-two) 0% 50%) 50% / ${scale}px ${scale}px;`"
       />
       </div>
     </div>
@@ -334,7 +334,7 @@ canvas.Pencil:hover {
   user-select: none;
   display: block;
   border: 0.3px solid var(--bg);
-  background: repeating-conic-gradient(#4c4c4c 0% 25%, #555555 0% 50%) 50% /
+  background: repeating-conic-gradient(var(--canvas-one) 0% 25%, var(--canvas-two) 0% 50%) 50% /
     20px 20px;
 }
 

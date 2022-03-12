@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <footer>
-            <p>Developd By <span class="jac"></span> <a href="https://github.com/jerosoler/" target="_blank">Jero Soler</a></p>
+            <p>Developed By <span class="jac"></span> <a href="https://github.com/jerosoler/" target="_blank">Jero Soler</a></p>
         </footer>
         
     </div>

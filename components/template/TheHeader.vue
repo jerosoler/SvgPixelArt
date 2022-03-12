@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div id="logo"><img src="/icons/Logo.svg" height="40px"></div>
+    <div id="logo"><img src="/icons/Logo.svg" height="40px" alt="SVG Pixel Art Logo"></div>
     <div class="options">
       <div
         v-if="$colorMode.preference !== 'light'"

@@ -2,11 +2,15 @@
   --bg: #c5c4c4;
   --color: #1c1c1c;
   --bg-editor: #2d2d2d;
+  --canvas-one: #ffffff;
+  --canvas-two: #e5e5e5;
 }
 
 .dark-mode {
   --bg: #1c1c1c;
   --color: #ffffff;
+  --canvas-one: #4c4c4c;
+  --canvas-two: #555555;
 }
 
 input {
@@ -81,4 +85,9 @@ button.success {
 button.success:hover {
   --pixelbox-background-color: #76c442;
   --pixelbox-background-shadow-border: 4px;
+}
+label {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: block;
 }
