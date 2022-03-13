@@ -65,5 +65,6 @@ ul {
   font-size: 24px;
 
   text-align: center;
+  margin-bottom: 0px;
 }
 </style>

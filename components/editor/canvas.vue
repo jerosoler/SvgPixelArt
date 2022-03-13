@@ -24,6 +24,7 @@
     </div>
     <div class="footer">
       <span>Frame: {{frameSelected}} / {{frames.length}}</span>
+      <span>Layer: {{layerSelected}} / {{frames[frameSelected-1].length}}</span>
       <span>Scale: {{scale}}</span>
       <span>Weapon: {{weapon}}</span>
       <span>Color:
@@ -57,6 +58,9 @@ export default {
     },
     frameSelected() {
       return this.$store.state.frameSelected;
+    },
+    layerSelected() {
+      return this.$store.state.layerSelected;
     },
     weapon() {
       return this.$store.state.weapon;

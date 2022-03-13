@@ -46,7 +46,10 @@ body {
   src: url("~assets/fonts/PressStart2P-Regular.ttf") format("truetype");
 }
 
-
+input {
+  font-family: "PS2P";
+  font-size: 8px;
+}
 button {
   display: block;
   font-family: "PS2P";

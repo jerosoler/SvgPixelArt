@@ -68,10 +68,42 @@ export const mutations = {
       state.frameSelected = 1;
     }
   },
+  delLayer(state, layer) {
+    let isZero = false;
+    if (layer + 1 == state.layerSelected) {
+      // EQUAL FRAME
+      //console.log("es el mismo frame");
+      if (layer === 0) {
+        // layer 0
+        //console.log("Es el layer 0");
+        state.layerSelected = 1;
+        isZero = true;
+      } else {
+        // OTHER layer
+        //console.log("NO ES el layer 0");
+        state.layerSelected = state.layerSelected - 1;
+      }
+    } else {
+      //console.log("NO ES EL MISMO layer");
+      if (state.frames.length === state.layerSelected) {
+        state.layerSelected = state.layerSelected - 1;
+      }
+    }
+    //Vue.delete(state.frames, frame);
+    state.frames[state.frameSelected-1].splice(layer, 1);
+    if (isZero === true) {
+      state.layerSelected = 1;
+    }
+  },
   duplicateFrame(state, frame) {
     const frameCopy = JSON.parse(JSON.stringify(state.frames[frame]));
     state.frames.splice(frame, 0, frameCopy);
     state.frameSelected = frame + 2;
+  },
+  duplicateLayer(state, layer) {
+    console.log(state.layerSelected, layer);
+    const layerCopy = JSON.parse(JSON.stringify(state.frames[state.frameSelected-1][layer]));
+    state.frames[state.frameSelected-1].splice(layer, 0, layerCopy);
   },
   selectFrame(state, frame) {
     state.frameSelected = frame;
@@ -79,6 +111,9 @@ export const mutations = {
   },
   selectLayer(state, layer) {
     state.layerSelected = layer;
+  },
+  renameLayer(state, {layer, value}) {
+    state.frames[state.frameSelected-1][layer].name = value;
   },
   clickState(state, {clickValue, clickButton}) {
     state.clickValue = clickValue;
