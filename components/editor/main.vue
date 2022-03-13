@@ -40,7 +40,9 @@
 
         <div class="column-pre-right">
           <EditorBox title="Fr. Options" >
-
+          </EditorBox>
+          <EditorBox title="Fr. Layers" >
+            <EditorLayers />
           </EditorBox>
           <EditorBox title="Fr. Colors" v-if="colors.length > 0">
             <EditorColorsFrame />
@@ -72,7 +74,7 @@ export default {
     },
     colors() {
       let colors = [];
-      Object.keys(this.$store.state.frames[this.frame][0]).forEach(
+      Object.keys(this.$store.state.frames[this.frame][0].colors).forEach(
         (colorlist) => {
           colors.push(colorlist);
         }

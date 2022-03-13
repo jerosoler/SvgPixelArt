@@ -41,7 +41,7 @@ export default {
       return this.$store.state.pixelWH;
     },
     frame() {
-      return this.$store.state.frames[this.doc][0];
+      return this.$store.state.frames[this.doc][0].colors;
     },
   },
 

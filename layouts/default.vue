@@ -43,8 +43,10 @@ html {
 
 .header, .footerhome {
   min-height: 60px;
-  max-width: 1140px;
-  margin: auto;
+  /*max-width: 1140px;*/
+   margin-left: 20px;
+  margin-right: 20px;
+  
 }
 .footerhome {
   min-height: 40px;

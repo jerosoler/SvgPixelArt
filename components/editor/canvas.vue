@@ -100,6 +100,7 @@ export default {
       scale: 20,
       ctx: null,
       ctxMouse: null,
+      raf: null,
       pos: {
         x: 0,
         y: 0,
@@ -212,10 +213,7 @@ export default {
           this.scale
         );
       } else {
-        //element.style.background = `#${color}`;
         this.ctx.beginPath();
-
-        //this.ctx.strokeStyle = "#" + color;
         this.ctx.strokeStyle = "transparent";
         this.ctx.fillStyle = "#" + color;
 
@@ -237,14 +235,13 @@ export default {
       this.$store.commit("addPixel", { x, y, color, frame });
     },
     loadDefaultData() {
-      const colors = this.frames[this.frameSelected - 1][0];
-
+      const colors = this.frames[this.frameSelected - 1][0].colors;
       Object.keys(colors).forEach((color, index) => {
         this.ctx.beginPath();
         this.ctx.strokeStyle = "transparent";
-        this.ctx.fillStyle = "#" + color;
         this.ctx.lineWidth = 0;
-        const pixels = this.frames[this.frameSelected - 1][0][color].pixels;
+        this.ctx.fillStyle = "#" + color;
+        const pixels = this.frames[this.frameSelected - 1][0].colors[color].pixels;
         pixels.forEach((ele) => {
           const x = ele.x;
           const y = ele.y;

@@ -23,7 +23,7 @@ export default {
     },
     colors() {
       let colors = [];
-      Object.keys(this.$store.state.frames[this.frame][0]).forEach(
+      Object.keys(this.$store.state.frames[this.frame][0].colors).forEach(
         (colorlist) => {
           colors.push(colorlist);
         }

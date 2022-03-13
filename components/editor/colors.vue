@@ -8,7 +8,7 @@
       :class="color === c ? `selected ${c}` : `${c}`"
       :style="`background: #${c};`"
     ></div>
-    <input type="color" class="inputcolor" :class="color == colorinput ? 'selected' : ''" :value="`#${inputcolor}`" @click="colorinput" @change="colorinput" >
+    <input type="color" class="inputcolor" :value="`#${inputcolor}`" @click="colorinput" @change="colorinput" >
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
     color() {
       return this.$store.state.colorSelected;
     },
+  },
+  watch: {
+    color() {
+      this.inputcolor = this.color;
+    }
   },
   data() {
     return {
@@ -46,12 +51,10 @@ export default {
       this.inputcolor = c;
       this.$store.commit("selectColor", c);
       
-      console.log(this.inputcolor, this.color);
-      if(this.inputcolor == this.color) {
-        console.log("yes");
-      }
+      
     },
     selectColor(c) {
+      this.inputcolor = c;
       this.$store.commit("selectColor", c);
     }
   },
