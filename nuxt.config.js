@@ -4,6 +4,9 @@ export default {
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
+  publicRuntimeConfig: {
+    baseURL: process.env.NUXT_BASE_URL || 'https://jerosoler.github.io/SvgPixelArt/'
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
