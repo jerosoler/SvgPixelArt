@@ -33,7 +33,7 @@ p a {
     height: 38px;
     margin-left: 7px;
     margin-right: 7px;
-    background-image: url('/icons/JeroAndCoco.svg');
+    background-image: url('/SvgPixelArt/icons/JeroAndCoco.svg');
     background-repeat: no-repeat;
     background-size: 38px;
 }

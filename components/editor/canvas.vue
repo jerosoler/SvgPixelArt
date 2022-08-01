@@ -320,7 +320,7 @@ canvas:hover {
   
 }
 canvas.Pencil:hover {
-  cursor: url('/icons/Pencil.svg') 0 128, crosshair;
+  cursor: url('/SvgPixelArt/icons/Pencil.svg') 0 128, crosshair;
   
 }
 .boxBlock {

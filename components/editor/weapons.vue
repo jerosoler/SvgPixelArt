@@ -51,7 +51,7 @@ export default {
    background-repeat: no-repeat;
 }
 .weapon:hover {
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
 }
 
 .selected {

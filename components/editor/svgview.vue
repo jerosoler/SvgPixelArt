@@ -145,10 +145,10 @@ svg {
   background-position: center center;
 }
 .del {
-  background-image: url('/icons/Delete.svg');
+  background-image: url('/SvgPixelArt/icons/Delete.svg');
 }
 .duplicate {
-  background-image: url('/icons/Duplicate.svg');
+  background-image: url('/SvgPixelArt/icons/Duplicate.svg');
 }
 
 .frame:hover .number,

@@ -47,7 +47,7 @@ ul {
 }
 .frame {
   border: 2px solid var(--color);
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
   margin-bottom: 10px;
 }
 
@@ -59,7 +59,7 @@ ul {
   display: block;
   width: 50px;
   height: 50px;
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
   border: none;
   line-height: 50px;
   font-size: 24px;

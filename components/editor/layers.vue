@@ -61,7 +61,7 @@ li {
   margin-top: 3px;
   margin-bottom: 3px;
   height: 28px;
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
   border: 2px solid var(--color);
 
 }
@@ -72,7 +72,7 @@ li {
  margin-top: 5px;
  font-size: 24px;
  text-align:center;
- cursor: url('/icons/Pointer.svg') 4 0, pointer;
+ cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
  border: none;
 }
 
@@ -99,10 +99,10 @@ input, input:focus {
   background-position: center center;
 }
 .del {
-  background-image: url('/icons/Delete.svg');
+  background-image: url('/SvgPixelArt/icons/Delete.svg');
 }
 .duplicate {
-  background-image: url('/icons/Duplicate.svg');
+  background-image: url('/SvgPixelArt/icons/Duplicate.svg');
 }
 .layer {
   position:relative;

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div id="logo"><img src="/icons/Logo.svg" height="40px" alt="SVG Pixel Art Logo"></div>
+    <div id="logo"><img src="/SvgPixelArt/icons/Logo.svg" height="40px" alt="SVG Pixel Art Logo"></div>
     <div class="options">
       <div
         v-if="$colorMode.preference !== 'light'"
@@ -64,19 +64,19 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 32px 32px;
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
 }
 
 .light {
-  background-image: url('/icons/Day.svg');
+  background-image: url('/SvgPixelArt/icons/Day.svg');
 }
 .dark {
-  background-image: url('/icons/Night.svg');
+  background-image: url('/SvgPixelArt/icons/Night.svg');
 }
 .fullscreenOpen {
-  background-image: url('/icons/Fullscreen.svg');
+  background-image: url('/SvgPixelArt/icons/Fullscreen.svg');
 }
 .fullscreenClose {
-  background-image: url('/icons/Downscreen.svg');
+  background-image: url('/SvgPixelArt/icons/Downscreen.svg');
 }
 </style>

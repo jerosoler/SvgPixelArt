@@ -72,7 +72,7 @@ export default {
   background: transparent;
   box-shadow: none;
   outline: none;
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
 }
 .colors {
   display: block;
@@ -82,7 +82,7 @@ export default {
   display: inline-block;
   width: 25%;
   height: 40px;
-  cursor: url('/icons/Pointer.svg') 4 0, pointer;
+  cursor: url('/SvgPixelArt/icons/Pointer.svg') 4 0, pointer;
   /*border: 2px solid var(--bg);
   margin: 5px;*/
 }
