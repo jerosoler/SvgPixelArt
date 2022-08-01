@@ -39,11 +39,11 @@
         </div>
 
         <div class="column-pre-right">
-          <EditorBox title="Fr. Layers" >
+          <!--<EditorBox title="Fr. Layers" >
             <EditorLayers />
           </EditorBox>
            <EditorBox title="L. Options" >
-          </EditorBox>
+          </EditorBox>-->
           <EditorBox title="Fr. Colors" v-if="colors.length > 0">
             <EditorColorsFrame />
           </EditorBox>

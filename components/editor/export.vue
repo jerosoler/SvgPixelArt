@@ -30,7 +30,7 @@ export default {
          colors() {
         let colors = [];
         this.$store.state.frames.forEach((item) => {
-            Object.keys(item[0]).forEach((colorlist) => {
+            Object.keys(item[0].colors).forEach((colorlist) => {
             colors.push(colorlist);
             });
         });
@@ -92,11 +92,11 @@ export default {
     },
 
     transformToSvgColor(color) {
-        console.log(color);
+      
       let svg_moveto = "";
       this.frames.forEach((frame, index) => {
-        if (this.frames[index][0][color] !== undefined) {
-          const data = this.frames[index][0][color].pixels;
+        if (this.frames[index][0].colors[color] !== undefined) {
+          const data = this.frames[index][0].colors[color].pixels;
           data.forEach((pos) => {
             const x = pos.x;
             const y = pos.y;
@@ -129,11 +129,10 @@ export default {
     },
     saveSvg(name) {
        let svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="${this.width}" height="${this.height}" viewBox="0 0 ${this.width * this.pixelWH} ${this.height * this.pixelWH}">`;
-
         if(this.frames.length === 1) {
             // Not animation
-            Object.keys(this.frames[0][0]).forEach((c) => {    
-                svgData += `<path d="${this.transformToSvg(this.frames[0][0][c].pixels)}" fill="#${c}"></path>`;
+            Object.keys(this.frames[0][0].colors).forEach((c) => {    
+                svgData += `<path d="${this.transformToSvg(this.frames[0][0].colors[c].pixels)}" fill="#${c}"></path>`;
             });            
         } else {
             // Animation
