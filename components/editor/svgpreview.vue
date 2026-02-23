@@ -94,7 +94,7 @@ export default {
           });
           svg_moveto += `;`;
         } else {
-          svg_moveto += `M;`;
+          svg_moveto += `M-1,-1;`;
         }
       });
 
